@@ -1,0 +1,249 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>腹部脂肪VAT计算</title>
+
+	<link rel="stylesheet" href="css.css" media="all">
+<style type="text/css">
+.basic-grey {
+	width:580px;
+	float:left;
+	margin:20px;
+}
+
+.basic-grey-right {
+	width:580px;
+	float:right;
+	margin:20px;
+}
+.basic-grey label,.basic-grey-right label {
+	display:block;
+	margin:0px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+
+<form action="" method="post" class="basic-grey">
+	<h1>
+		
+        男性腹部脂肪VAT计算
+		<span style="color:red">
+			Age,height,weight为必选项，其他数据填写越详细结果越精准.
+		</span>
+	</h1>
+	<label>
+		<span style="coler:red">
+			Age(0~120) :
+		</span>
+		<input id="man_age" type="number" name="man_age" placeholder="Your Age" min="0" max="120"/>
+	</label>
+	<label>
+		<span>
+			Height(50~250cm):
+		</span>
+		<input id="man_height" type="number" name="man_height" placeholder="Your Height" min="50" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			Weight(20~250kg):
+		</span>
+		<input id="man_weight" type="number" name="man_weight" placeholder="Your Weight" min="20" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			WC(15~250cm):
+		</span>
+		<input id="man_wc" type="number" name="man_wc" placeholder="Your wc" min="15" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			HC(15~250cm):
+		</span>
+		<input id="man_hc" type="number" name="man_hc" placeholder="Your hc" min="15" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat mass(0~150kg):
+		</span>
+		<input id="man_fat" type="number" name="man_fat" placeholder="Whole body fat mass" min="0" max="150"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat free mass(0~150kg):
+		</span>
+		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass" min="0" max="150"
+		/>
+	</label>
+	<label>
+		<span>
+			Trunk fat mass(0~80kg):
+		</span>
+		<input id="man_trunk_fat" type="number" name="man_trunk_fat" placeholder="Trunk fat mass" min="0" max="80"
+		/>
+	</label>
+	<label>
+		<span>
+			Leg fatfree mass(0~40kg):
+		</span>
+		<input id="man_leg_fatfree" type="number" name="man_leg_fatfree" placeholder="Leg fatfree mass" min="0" max="40"
+		/>
+	</label>
+	<label>
+		<span>
+			Basal metabolic rate(500~30000kJ):
+		</span>
+		<input id="man_basal_metabolic_rate" type="number" name="man_basal_metabolic_rate" placeholder="Basal metabolic rate" min="500" max="30000"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat free mass(0~150kg):
+		</span>
+		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass"
+		/>
+	</label>
+	<label>
+		<span>
+			 
+		</span>
+		<input type="button" class="button" value="Calculate (please click)" />
+	</label>
+</form>
+
+
+<form action="" method="post" class="basic-grey-right">
+	<h1>		
+		女性腹部脂肪VAT计算
+		<span style="color:red">
+			Age,height,weight为必选项，其他数据填写越详细结果越精准.
+		</span>
+	</h1>
+	<label>
+		<span style="coler:red">
+			Age(0~120) :
+		</span>
+		<input id="man_age" type="number" name="man_age" placeholder="Your Age" min="0" max="120"/>
+	</label>
+	<label>
+		<span>
+			Height(50~250cm):
+		</span>
+		<input id="man_height" type="number" name="man_height" placeholder="Your Height" min="50" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			Weight(20~250kg):
+		</span>
+		<input id="man_weight" type="number" name="man_weight" placeholder="Your Weight" min="20" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			WC(15~250cm):
+		</span>
+		<input id="man_wc" type="number" name="man_wc" placeholder="Your wc" min="15" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			HC(15~250cm):
+		</span>
+		<input id="man_hc" type="number" name="man_hc" placeholder="Your hc" min="15" max="250"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat mass(0~150kg):
+		</span>
+		<input id="man_fat" type="number" name="man_fat" placeholder="Whole body fat mass" min="0" max="150"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat free mass(0~150kg):
+		</span>
+		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass" min="0" max="150"
+		/>
+	</label>
+	<label>
+		<span>
+			Trunk fat mass(0~80kg):
+		</span>
+		<input id="man_trunk_fat" type="number" name="man_trunk_fat" placeholder="Trunk fat mass" min="0" max="80"
+		/>
+	</label>
+	<label>
+		<span>
+			Leg fatfree mass(0~40kg):
+		</span>
+		<input id="man_leg_fatfree" type="number" name="man_leg_fatfree" placeholder="Leg fatfree mass" min="0" max="40"
+		/>
+	</label>
+	<label>
+		<span>
+			Basal metabolic rate(500~30000kJ):
+		</span>
+		<input id="man_basal_metabolic_rate" type="number" name="man_basal_metabolic_rate" placeholder="Basal metabolic rate" min="500" max="30000"
+		/>
+	</label>
+	<label>
+		<span>
+			Whole body fat free mass(0~150kg):
+		</span>
+		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass"
+		/>
+	</label>
+	<label>
+		<span>
+			 
+		</span>
+		<input type="button" class="button" value="Calculate (please click)" />
+	</label>
+</form>
+<script type="text/javascript">
+	function getRisk(){
+	//define return value
+	var returnRisk
+	
+	//get parameters from form
+	var iptAge = document.getElementById("age").value
+	var iptSmoking  = document.getElementById("smk").value
+	var iptTbi  = document.getElementById("tbi").value
+	var iptAbi = document.getElementById("abi").value
+	var iptSbp = document.getElementById("sbp").value
+	
+	//calculate for b
+	var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi
+	var c = 1- Math.pow(0.975,Math.exp(-12.598+b))
+	returnRisk = c
+	document.getElementById("riskValue").innerHTML=Number(returnRisk *100).toFixed(2)+"%"
+	if (returnRisk <= 0.0314 )
+	{document.getElementById("riskCate").innerHTML="Low Risk"
+}
+	else if (returnRisk > 0.0314)
+	{document.getElementById("riskCate").innerHTML="High Risk"
+}
+	//alert(returnRisk)//结果弹窗显示
+	}
+</script>
+
+</body>
+
+</html>
