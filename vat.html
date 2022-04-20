@@ -9,7 +9,8 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>腹部脂肪VAT计算</title>
 
-	<link rel="stylesheet" href="css.css" media="all">
+<script src="jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" href="css.css" media="all">
 <style type="text/css">
 .basic-grey {
 	width:580px;
@@ -34,7 +35,7 @@
 <body>
 
 
-<form action="" method="post" class="basic-grey">
+<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
 	<h1>
 		
         男性腹部脂肪VAT计算
@@ -44,90 +45,104 @@
 	</h1>
 	<label>
 		<span style="coler:red">
-			Age(0~120) :
+			Age:<br/>(0~120)
 		</span>
-		<input id="man_age" type="number" name="man_age" placeholder="Your Age" min="0" max="120"/>
+		<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120"/>
 	</label>
 	<label>
 		<span>
-			Height(50~250cm):
+			Height:<br/>(50~250cm)
 		</span>
-		<input id="man_height" type="number" name="man_height" placeholder="Your Height" min="50" max="250"
+		<input id="man_height" type="number" name="man_height" placeholder="Height(50~250cm)" min="50" max="250"
 		/>
 	</label>
 	<label>
 		<span>
-			Weight(20~250kg):
+			Weight:<br/>(20~250kg)
 		</span>
-		<input id="man_weight" type="number" name="man_weight" placeholder="Your Weight" min="20" max="250"
+		<input id="man_weight" type="number" name="man_weight" placeholder="Weight(20~250kg)" min="20" max="250"
 		/>
 	</label>
 	<label>
 		<span>
-			WC(15~250cm):
+			WC:<br/>(15~250cm)
 		</span>
-		<input id="man_wc" type="number" name="man_wc" placeholder="Your wc" min="15" max="250"
+		<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250"
 		/>
 	</label>
 	<label>
 		<span>
-			HC(15~250cm):
+			HC:<br/>(15~250cm)
 		</span>
-		<input id="man_hc" type="number" name="man_hc" placeholder="Your hc" min="15" max="250"
+		<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250"
 		/>
 	</label>
 	<label>
 		<span>
-			Whole body fat mass(0~150kg):
+			Whole body fat mass:<br/>(0~150kg)
 		</span>
-		<input id="man_fat" type="number" name="man_fat" placeholder="Whole body fat mass" min="0" max="150"
+		<input id="man_Whole_body_fat_mass" type="number" name="man_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
 		/>
 	</label>
 	<label>
 		<span>
-			Whole body fat free mass(0~150kg):
+			Whole body fat free mass:<br/>(0~150kg)
 		</span>
-		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass" min="0" max="150"
+		<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150"
 		/>
 	</label>
 	<label>
 		<span>
-			Trunk fat mass(0~80kg):
+			Trunk fat mass:<br/>(0~80kg)
 		</span>
-		<input id="man_trunk_fat" type="number" name="man_trunk_fat" placeholder="Trunk fat mass" min="0" max="80"
+		<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80"
+		/>
+	</label>
+	
+	<label>
+		<span>
+			Trunk fat free mass:<br/>(0~80kg)
+		</span>
+		<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40"
 		/>
 	</label>
 	<label>
 		<span>
-			Leg fatfree mass(0~40kg):
+			Leg fatfree mass:<br/>(0~40kg)
 		</span>
-		<input id="man_leg_fatfree" type="number" name="man_leg_fatfree" placeholder="Leg fatfree mass" min="0" max="40"
+		<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40"
 		/>
 	</label>
 	<label>
 		<span>
-			Basal metabolic rate(500~30000kJ):
+			Basal metabolic rate:<br/>(500~30000kJ)
 		</span>
-		<input id="man_basal_metabolic_rate" type="number" name="man_basal_metabolic_rate" placeholder="Basal metabolic rate" min="500" max="30000"
+		<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000"
 		/>
 	</label>
 	<label>
-		<span>
-			Whole body fat free mass(0~150kg):
-		</span>
-		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass"
-		/>
+		<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('man')"/>
 	</label>
+	
+	<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
+		<span>
+			result:
+		</span>
+		<span id="man_result_info"></span>
+	</label>
+	<!--
 	<label>
 		<span>
-			 
+			upload cvs:
 		</span>
-		<input type="button" class="button" value="Calculate (please click)" />
+		<input id="man_file" type="file" name="man_file"/><input type="button" class="button" id="man_file_button" name="man_file_button" value="batch" />
+		<a>download csv modle</a>
 	</label>
+	-->
 </form>
 
 
-<form action="" method="post" class="basic-grey-right">
+<form action="" id="man_form" name="man_form" method="post" class="basic-grey-right">
 	<h1>		
 		女性腹部脂肪VAT计算
 		<span style="color:red">
@@ -189,6 +204,14 @@
 		<input id="man_trunk_fat" type="number" name="man_trunk_fat" placeholder="Trunk fat mass" min="0" max="80"
 		/>
 	</label>
+	
+	<label>
+		<span>
+			Trunk fat free mass(0~80kg):
+		</span>
+		<input id="man_trunk_fat_free" type="number" name="man_trunk_fat_free" placeholder="Leg fatfree mass" min="0" max="40"
+		/>
+	</label>
 	<label>
 		<span>
 			Leg fatfree mass(0~40kg):
@@ -204,30 +227,30 @@
 		/>
 	</label>
 	<label>
-		<span>
-			Whole body fat free mass(0~150kg):
-		</span>
-		<input id="man_fat_free" type="number" name="man_fat_free" placeholder="Whole body fat free mass"
-		/>
-	</label>
-	<label>
-		<span>
-			 
-		</span>
-		<input type="button" class="button" value="Calculate (please click)" />
+		<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('man')"/>
 	</label>
 </form>
 <script type="text/javascript">
-	function getRisk(){
+	function getRisk(gender){
 	//define return value
 	var returnRisk
 	
 	//get parameters from form
-	var iptAge = document.getElementById("age").value
-	var iptSmoking  = document.getElementById("smk").value
-	var iptTbi  = document.getElementById("tbi").value
-	var iptAbi = document.getElementById("abi").value
-	var iptSbp = document.getElementById("sbp").value
+	var age = $("#" + gender + "_age").val();	
+	var height = $("#" + gender + "_height").val();
+	var weight = $("#" + gender + "_weight").val();
+	var wc = $("#" + gender + "_wc").val();
+	var hc = $("#" + gender + "_hc").val();
+	var Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass").val();
+	var Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass").val();
+	var Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass").val();
+	var Trunk_fat_free_mass = $("#" + gender + "_Trunk_fat_free_mass").val();
+	var Leg_fatfree_mass = $("#" + gender + "_Leg_fatfree_mass").val();
+	var Basal_metabolic_rate = $("#" + gender + "_Basal_metabolic_rate").val();
+	
+
+	$("#" + gender + "_result_info").html("22222");
+	$("#" + gender + "_result_span").fadeIn("slow");
 	
 	//calculate for b
 	var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi

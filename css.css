@@ -66,3 +66,15 @@
 .basic-grey .button:hover,.basic-grey-right .button:hover  {
 	background:#CF7A7A
 }
+
+.explain {
+    border: 1px solid #a1c7e6;
+    height: 60px;
+    line-height: 42px;
+    background: #e0f1ff;
+    color: #1e4e7b;
+    padding: 0 10px;
+    font-size: 16px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+    text-align: center;
+}
