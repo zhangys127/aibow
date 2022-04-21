@@ -15,13 +15,13 @@
 .basic-grey {
 	width:580px;
 	float:left;
-	margin:20px;
+	margin:2%;
 }
 
 .basic-grey-right {
 	width:580px;
 	float:right;
-	margin:20px;
+	margin:2%;
 }
 .basic-grey label,.basic-grey-right label {
 	display:block;
@@ -128,7 +128,7 @@
 		<span>
 			result:
 		</span>
-		<span id="man_result_info"></span>
+		<div id="man_result_info"></div>
 	</label>
 	<!--
 	<label>
@@ -227,43 +227,222 @@
 		/>
 	</label>
 	<label>
-		<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('man')"/>
+		<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('woman')"/>
 	</label>
 </form>
-<script type="text/javascript">
-	function getRisk(gender){
-	//define return value
-	var returnRisk
-	
-	//get parameters from form
-	var age = $("#" + gender + "_age").val();	
-	var height = $("#" + gender + "_height").val();
-	var weight = $("#" + gender + "_weight").val();
-	var wc = $("#" + gender + "_wc").val();
-	var hc = $("#" + gender + "_hc").val();
-	var Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass").val();
-	var Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass").val();
-	var Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass").val();
-	var Trunk_fat_free_mass = $("#" + gender + "_Trunk_fat_free_mass").val();
-	var Leg_fatfree_mass = $("#" + gender + "_Leg_fatfree_mass").val();
-	var Basal_metabolic_rate = $("#" + gender + "_Basal_metabolic_rate").val();
-	
 
-	$("#" + gender + "_result_info").html("22222");
-	$("#" + gender + "_result_span").fadeIn("slow");
+<script type="text/javascript">
+
+	//get parameters from form
+	var Age;	
+	var Height;
+	var Weight;
+	var wc;
+	var hc;
+	var Whole_body_fat_mass;
+	var Whole_body_fat_free_mass;
+	var Trunk_fat_mass;
+	var Trunk_fat_free_mass;
+	var Leg_fatfree_mass;
+	var Basal_metabolic_rate;
+	var Objgender;
+	var sex = 1;//0是女性，1是男性
+	var result_info;
+	var result_span;
+	
+	function getRisk(gender){
+		Objgender = gender;
+		if(gender == "woman"){
+			sex = 0;
+		}
+		Age = $("#" + gender + "_age");	
+		Height = $("#" + gender + "_height");
+		Weight = $("#" + gender + "_weight");
+		wc = $("#" + gender + "_wc");
+		hc = $("#" + gender + "_hc");
+		Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass");
+		Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass");
+		Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass");
+		Trunk_fat_free_mass = $("#" + gender + "_Trunk_fat_free_mass");
+		Leg_fatfree_mass = $("#" + gender + "_Leg_fatfree_mass");
+		Basal_metabolic_rate = $("#" + gender + "_Basal_metabolic_rate");
+		result_info = $("#" + gender + "_result_info");
+		result_span = $("#" + gender + "_result_span");
+		//必填验证
+		if(!checkForm1()){
+			return false;
+		}
+		//全部不为空时按公式3计算
+		if(!checkForm2_isnull() && !checkForm3_isnull()){
+			if(checkForm2_scope() && checkForm3_scope()){
+				//公式3
+				$(result_info).html("公式3");
+				$(result_span).fadeIn("slow");			
+			}
+			
+		}else if(!checkForm2_isnull()){
+			if(checkForm2_scope()){
+				//公式2
+				$(result_info).html("公式2");
+				$(result_span).fadeIn("slow");
+			}
+		//公式1
+		}else {		
+			// 男
+			if(sex==1){
+				/** 原公式
+			   VAT = [3.643001 
+					+ (-0.01225432)*Height + (0.85249813)*ln(Weight) 
+					+ (31834.57241168)*Height^(-2) + (-92.20461434)*ln(Weight)^(-2) 
+					+ (0.00218163)*Age*ln(Weight)]^2 **/
+				var VAT = Math.pow(3.643001 + (-0.01225432)*$(Height).val() + (0.85249813)*Math.log($(Weight).val()) + (31834.57241168)* Math.pow($(Height).val(),-2) + (-92.20461434)* Math.pow(Math.log($(Weight).val()),-2) + (0.00218163)*$(Age).val()*Math.log($(Weight).val()),2);
+				
+				$(result_info).html("公式1记算:" + VAT);
+				$(result_span).fadeIn("slow");
+			}
+			
+		}
+		
+	
 	
 	//calculate for b
-	var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi
-	var c = 1- Math.pow(0.975,Math.exp(-12.598+b))
-	returnRisk = c
-	document.getElementById("riskValue").innerHTML=Number(returnRisk *100).toFixed(2)+"%"
-	if (returnRisk <= 0.0314 )
-	{document.getElementById("riskCate").innerHTML="Low Risk"
-}
-	else if (returnRisk > 0.0314)
-	{document.getElementById("riskCate").innerHTML="High Risk"
-}
+	//var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi
+	//var c = 1- Math.pow(0.975,Math.exp(-12.598+b))
+	//returnRisk = c
+	//document.getElementById("riskValue").innerHTML=Number(returnRisk *100).toFixed(2)+"%"
+	//if (returnRisk <= 0.0314 )
+	//{document.getElementById("riskCate").innerHTML="Low Risk"
+//}
+	//else if (returnRisk > 0.0314)
+	//{document.getElementById("riskCate").innerHTML="High Risk"
+//}
 	//alert(returnRisk)//结果弹窗显示
+	}
+	
+	
+	function checkForm1() {	
+        /**    if ($(Age).val()!=null && $(Age).val()!="" && $(Age).val()>=0 && $(Age).val()<=120 ) {
+                $(Age).css("border", "");
+            } else {
+                $(Age).css("border", "1px solid red");
+				$(Age).focus();
+				return false;
+            }
+            
+            if ($(Height).val()!=null && $(Height).val()!="" && $(Height).val()>=50 && $(Height).val()<=250 ) {
+                $(Height).css("border", "");
+            } else {
+                $(Height).css("border", "1px solid red");
+				$(Height).focus();
+				return false;
+            }
+			
+            if ($(Weight).val()!=null && $(Weight).val()!="" && $(Weight).val()>=20 && $(Weight).val()<=250 ) {
+                $(Weight).css("border", "");
+            } else {
+                $(Weight).css("border", "1px solid red");
+				$(Weight).focus();
+				return false;
+            }**/
+			return true;
+	}
+	function checkForm2_isnull() {	
+            if (($(wc).val()==null || $(wc).val()=="") || ($(hc).val()==null || $(hc).val()=="")) {
+				return true;
+            }
+			return false;
+	}
+	
+	function checkForm2_scope() {	
+			if($(wc).val()!=null && $(wc).val()!=""){
+				if ($(wc).val()>=15 && $(wc).val()<=250 ) {
+					$(wc).css("border", "");
+				} else {
+					$(wc).css("border", "1px solid red");
+					$(wc).focus();
+					return false;
+				}
+			}
+			if($(hc).val()!=null && $(hc).val()!=""){
+				if($(hc).val()>=15 && $(hc).val()<=250 ) {
+					$(hc).css("border", "");
+				} else {
+					$(hc).css("border", "1px solid red");
+					$(hc).focus();
+					return false;
+				}	
+			}
+			return true;
+	}
+	
+	function checkForm3_isnull() {	
+			if ($(Whole_body_fat_mass).val()==null || $(Whole_body_fat_mass).val()=="" ||
+			$(Whole_body_fat_free_mass).val()==null || $(Whole_body_fat_free_mass).val()=="" ||
+			$(Trunk_fat_mass).val()==null || $(Trunk_fat_mass).val()=="" || 
+			$(Trunk_fat_free_mass).val()==null || $(Trunk_fat_free_mass).val()=="" || 
+			$(Leg_fatfree_mass).val()==null || $(Leg_fatfree_mass).val()=="" || 
+			$(Basal_metabolic_rate).val()==null || $(Basal_metabolic_rate).val()==""){
+				return true;
+			}           
+			return false;
+	}
+	
+	function checkForm3_scope() {	
+			if($(Whole_body_fat_mass).val()!=null && $(Whole_body_fat_mass).val()!=""){
+				if($(Whole_body_fat_mass).val()>=0 && $(Whole_body_fat_mass).val()<=150 ) {
+					$(Whole_body_fat_mass).css("border", "");
+				} else {
+					$(Whole_body_fat_mass).css("border", "1px solid red");
+					$(Whole_body_fat_mass).focus();
+					return false;
+				}
+			}
+			if($(Whole_body_fat_free_mass).val()!=null && $(Whole_body_fat_free_mass).val()!=""){
+				if($(Whole_body_fat_free_mass).val()>=0 && $(Whole_body_fat_free_mass).val()<=150 ) {
+					$(Whole_body_fat_free_mass).css("border", "");
+				} else {
+					$(Whole_body_fat_free_mass).css("border", "1px solid red");
+					$(Whole_body_fat_free_mass).focus();
+					return false;
+				}
+			}
+			if($(Trunk_fat_mass).val()!=null && $(Trunk_fat_mass).val()!=""){
+				if($(Trunk_fat_mass).val()>=0 && $(Trunk_fat_mass).val()<=80 ) {
+					$(Trunk_fat_mass).css("border", "");
+				} else {
+					$(Trunk_fat_mass).css("border", "1px solid red");
+					$(Trunk_fat_mass).focus();
+					return false;
+				}
+			}
+			if($(Trunk_fat_free_mass).val()!=null && $(Trunk_fat_free_mass).val()!=""){
+				if($(Trunk_fat_free_mass).val()>=0 && $(Trunk_fat_free_mass).val()<=80 ) {
+					$(Trunk_fat_free_mass).css("border", "");
+				} else {
+					$(Trunk_fat_free_mass).css("border", "1px solid red");
+					$(Trunk_fat_free_mass).focus();
+					return false;
+				}
+			}
+			if($(Leg_fatfree_mass).val()!=null && $(Leg_fatfree_mass).val()!=""){
+				if($(Leg_fatfree_mass).val()>=0 && $(Leg_fatfree_mass).val()<=40 ) {
+					$(Leg_fatfree_mass).css("border", "");
+				} else {
+					$(Leg_fatfree_mass).css("border", "1px solid red");
+					$(Leg_fatfree_mass).focus();
+					return false;
+				}
+			}
+			if($(Basal_metabolic_rate).val()!=null && $(Basal_metabolic_rate).val()!=""){
+				if($(Basal_metabolic_rate).val()>=500 && $(Basal_metabolic_rate).val()<=30000 ) {
+					$(Basal_metabolic_rate).css("border", "");
+				} else {
+					$(Basal_metabolic_rate).css("border", "1px solid red");
+					$(Basal_metabolic_rate).focus();
+					return false;
+				}
+			}
+			return true;
 	}
 </script>
 

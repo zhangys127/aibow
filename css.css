@@ -75,6 +75,11 @@
     color: #1e4e7b;
     padding: 0 10px;
     font-size: 16px;
-    font-family: \5FAE\8F6F\96C5\9ED1;
     text-align: center;
+}
+.explain div{
+	float: left;
+    text-align: left;
+    padding-right: 10px;
+    margin-top: 10px;
 }
