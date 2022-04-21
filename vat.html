@@ -304,7 +304,7 @@
 						+ (0.00218163)*Age*ln(Weight)]^2 **/
 				var VAT = Math.pow(3.643001 + (-0.01225432)*$(Height).val() + (0.85249813)*Math.log($(Weight).val()) + (31834.57241168)* Math.pow($(Height).val(),-2) + (-92.20461434)* Math.pow(Math.log($(Weight).val()),-2) + (0.00218163)*$(Age).val()*Math.log($(Weight).val()),2);
 				
-				$(result_info).html("公式1记算:" + VAT);
+				$(result_info).html("公式1记算:" + VAT.toFixed(3));
 				$(result_span).fadeIn("slow");
 			}
 			// 女
@@ -318,7 +318,7 @@
 						+ (-26.10013911)*ln(Weight)^(-2)]^2 **/
 				var VAT = Math.pow(-2.538071+ (-0.00618113)*$(Height).val() + (1.48219618)*Math.log($(Weight).val())+ (-1155.36103141)*Math.pow($(Age).val(),-2) + (7513.36791386)*Math.pow($(Height).val(),-2)+ (55.13712057)*Math.pow($(Height).val(),-1) + (3.89774410)* Math.pow($(Height).val(),-0.5)+ (0.00000000)*Math.pow($(Height).val(),0.5) + (-0.00001134)*Math.pow($(Height).val(),2)+ (-26.10013911)*Math.pow(Math.log($(Weight).val()),-2),2);
 				
-				$(result_info).html("公式1记算:" + VAT);
+				$(result_info).html("公式1记算:" + VAT.toFixed(3));
 				$(result_span).fadeIn("slow");
 			}
 		}
