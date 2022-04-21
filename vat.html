@@ -47,34 +47,34 @@
 		<span style="coler:red">
 			Age:<br/>(0~120)
 		</span>
-		<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120"/>
+		<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120" value="58"/>
 	</label>
 	<label>
 		<span>
 			Height:<br/>(50~250cm)
 		</span>
-		<input id="man_height" type="number" name="man_height" placeholder="Height(50~250cm)" min="50" max="250"
+		<input id="man_height" type="number" name="man_height" placeholder="Height(50~250cm)" min="50" max="250" value="180"
 		/>
 	</label>
 	<label>
 		<span>
 			Weight:<br/>(20~250kg)
 		</span>
-		<input id="man_weight" type="number" name="man_weight" placeholder="Weight(20~250kg)" min="20" max="250"
+		<input id="man_weight" type="number" name="man_weight" placeholder="Weight(20~250kg)" min="20" max="250" value="116.3"
 		/>
 	</label>
 	<label>
 		<span>
 			WC:<br/>(15~250cm)
 		</span>
-		<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250"
+		<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250" value="111"
 		/>
 	</label>
 	<label>
 		<span>
 			HC:<br/>(15~250cm)
 		</span>
-		<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250"
+		<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250" value="114"
 		/>
 	</label>
 	<label>
@@ -82,20 +82,20 @@
 			Whole body fat mass:<br/>(0~150kg)
 		</span>
 		<input id="man_Whole_body_fat_mass" type="number" name="man_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
-		/>
+		 value="35.9"/>
 	</label>
 	<label>
 		<span>
 			Whole body fat free mass:<br/>(0~150kg)
 		</span>
-		<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150"
+		<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="80.4"
 		/>
 	</label>
 	<label>
 		<span>
 			Trunk fat mass:<br/>(0~80kg)
 		</span>
-		<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80"
+		<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80" value="22.5"
 		/>
 	</label>
 	
@@ -103,21 +103,21 @@
 		<span>
 			Trunk fat free mass:<br/>(0~80kg)
 		</span>
-		<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40"
+		<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40" value="42.9"
 		/>
 	</label>
 	<label>
 		<span>
 			Leg fatfree mass:<br/>(0~40kg)
 		</span>
-		<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40"
+		<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40" value="13.75"
 		/>
 	</label>
 	<label>
 		<span>
 			Basal metabolic rate:<br/>(500~30000kJ)
 		</span>
-		<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000"
+		<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000" value="10079"
 		/>
 	</label>
 	<label>
@@ -244,8 +244,8 @@
 	var Age;	
 	var Height;
 	var Weight;
-	var wc;
-	var hc;
+	var WC;
+	var HC;
 	var Whole_body_fat_mass;
 	var Whole_body_fat_free_mass;
 	var Trunk_fat_mass;
@@ -265,8 +265,8 @@
 		Age = $("#" + gender + "_age");	
 		Height = $("#" + gender + "_height");
 		Weight = $("#" + gender + "_weight");
-		wc = $("#" + gender + "_wc");
-		hc = $("#" + gender + "_hc");
+		WC = $("#" + gender + "_wc");
+		HC = $("#" + gender + "_hc");
 		Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass");
 		Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass");
 		Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass");
@@ -279,19 +279,121 @@
 		if(!checkForm1()){
 			return false;
 		}
-		//全部不为空时按公式3计算
+		//公式3
 		if(!checkForm2_isnull() && !checkForm3_isnull()){
 			if(checkForm2_scope() && checkForm3_scope()){
-				//公式3
-				$(result_info).html("公式3");
-				$(result_span).fadeIn("slow");			
+				// 男
+				if(sex==1){		
+					/**
+					VAT = [3.713749 
+					+ (-0.00828361)*Height + (0.60967130)*ln(Weight) 
+					+ (0.46122691)*ln(WC) + (2282.77223658)*Height^(-2) 
+					+ (-12.39429782)*ln(Weight)^(-2) + (-0.00198656)*ln(Weight)^(-1) 
+					+ (-0.00004123)*ln(Weight)^(-0.5) + (-58.90050229)*ln(WC)^(-2) 
+					+ (8.51124729)*Height^0.5 + (-0.20865467)*ln(HC)^2 
+					+ (0.51379215)*ln(Whole body fat mass) 
+					+ (0.08472672)*(Whole body fat-free mass)^0.5 
+					+ (0.00341033)*(Trunk fat mass)^0.5 
+					+ (0.00007531)*Age*(Whole body fat-free mass)^0.5 
+					+ (0.00073450)*Age*(Trunk fat mass)^0.5 
+					+ (0.00042903)*Height*ln(Whole body fat mass) 
+					+ (0.00042461)*Height*(Trunk fat mass)^0.5 
+					+ (-0.00128165)*ln(HC)*(Trunk fat-free mass)^0.5 
+					+ (-0.05238220)*ln(HC)*ln(Leg fat-free mass)]^2
+					**/
+					
+					var VAT = Math.pow(3.713749+ (-0.00828361)*$(Height).val() + (0.60967130)*Math.log($(Weight).val())+ (0.46122691)*Math.log($(WC).val()) + (2282.77223658)*Math.pow($(Height).val(),-2)+ (-12.39429782)*Math.pow(Math.log($(Weight).val()),-2) + (-0.00198656)*Math.pow(Math.log($(Weight).val()),-1)+ (-0.00004123)*Math.pow(Math.log($(Weight).val()),-0.5)+ (-58.90050229)*Math.pow(Math.log($(WC).val()),-2)+ (8.51124729)*Math.pow($(Height).val(),0.5) + (-0.20865467)*Math.pow(Math.log($(HC).val()),2)+ (0.51379215)*Math.log($(Whole_body_fat_mass).val())+ (0.08472672)* Math.pow($(Whole_body_fat_free_mass).val(),0.5)+ (0.00341033)*Math.pow($(Trunk_fat_mass).val(),0.5)+ (0.00007531)*$(Age).val()*Math.pow($(Whole_body_fat_free_mass).val(),0.5)+ (0.00073450)*$(Age).val()*Math.pow($(Trunk_fat_mass).val(),0.5)+ (0.00042903)*$(Height).val()*Math.log($(Whole_body_fat_mass).val())+ (0.00042461)*$(Height).val()*Math.pow($(Trunk_fat_mass).val(),0.5)+ (-0.00128165)*Math.log($(HC).val())*Math.pow($(Trunk_fat_free_mass).val(),0.5)+ (-0.05238220)*Math.log($(HC).val())*Math.log($(Leg_fatfree_mass).val()),2);
+					
+					$(result_info).html("按公式3记算:" + VAT.toFixed(3));
+					$(result_span).fadeIn("slow");
+				// 女
+				}else if(sex==0){
+					
+					/**
+					VAT = [-18.31153 
+					+ (-0.00671831)*Age + (-0.00051828)*Height 
+					+ (1.75872296)*ln(Weight) + (0.37375998)*ln(WC) 
+					+ (-0.34735481)*ln(HC) + (-711.27882445)*Age^(-2) 
+					+ (8.62170667)*Height^(-0.5) + (19.06908254)*ln(Weight)^(-2) 
+					+ (-1.33578924)*ln(Weight)^(-0.5) + (88.76827695)*ln(WC)^(-2) 
+					+ (-10.76548508)*ln(WC)^(-1) + (-10.54112569)*ln(WC)^(-0.5) 
+					+ (-224.20727507)*ln(HC)^(-2) + (5.44437335)*ln(HC)^(-1) 
+					+ (12.00867280)*ln(HC)^(-0.5) + (11.31449175)*Height^0.5 
+					+ (-0.00002824)*Height^2 + (7.72117372)*ln(Weight)^0.5 
+					+ (0.00425958)*ln(Weight)^2 + (16.66281508)*ln(WC)^0.5 
+					+ (0.21429588)*ln(WC)^2 + (7.36597784)*ln(HC)^0.5 
+					+ (-0.32864584)*ln(HC)^2 + (0.00002168)*Age*Height 
+					+ (0.00212098)*Age*ln(Weight) + (-0.00067949)*Age*ln(WC) 
+					+ (-0.00100383)*Age*ln(HC) + (0.00294856)*Height*ln(Weight) 
+					+ (0.00105966)*Height*ln(WC) + (-0.00153281)*Height*ln(HC) 
+					+ (0.14523730)*ln(Weight)*ln(WC) + (-0.13441733)*ln(Weight)*ln(HC) 
+					+ (-0.00452963)*ln(WC)*ln(HC) + (0.07003769)*ln(Whole body fat mass) 
+					+ (-0.05724299)*ln(Whole body fat-free mass) 
+					+ (0.01760416)*(Trunk fat mass)^0.5 + (-1.20005135)*ln(Trunk fat-free mass) 
+					+ (-1.14553619)*ln(Leg fat-free mass) 
+					+ (0.00201310)*Age*ln(Whole body fat mass) 
+					+ (0.00198122)*Age*ln(Whole body fat-free mass) 
+					+ (-0.00002998)*Age*(Trunk fat mass)^0.5 
+					+ (0.00018641)*Age*ln(Trunk fat-free mass) 
+					+ (0.00856834)*Age*ln(Leg fat-free mass) 
+					+ (0.00278302)*Height*ln(Whole body fat mass) 
+					+ (0.00031320)*Height*(Trunk fat mass)^0.5 
+					+ (-0.00177017)*Height*ln(Trunk fat-free mass) 
+					+ (-0.00299161)*Height*ln(Leg fat-free mass) 
+					+ (0.01360410)*ln(Weight)*ln(Whole body fat mass) 
+					+ (0.05443092)*ln(Weight)*ln(Whole body fat-free mass) 
+					+ (-0.00655010)*ln(Weight)*(Trunk fat mass)^0.5 
+					+ (0.04211560)*ln(WC)*ln(Whole body fat mass) 
+					+ (0.04793857)*ln(WC)*ln(Whole body fat-free mass) 
+					+ (-0.12922777)*ln(HC)*ln(Whole body fat mass) 
+					+ (0.03627063)*ln(HC)*ln(Whole body fat-free mass) 
+					+ (-0.01605353)*ln(HC)*(Trunk fat mass)^0.5 
+					+ (-0.02911028)*ln(HC)*ln(Leg fat-free mass) 
+					+ (1.19102936)*ln(Basal metabolic rate) 
+					+ (-0.00337973)*Age*ln(Basal metabolic rate) 
+					+ (0.00612018)*ln(Weight)*ln(Basal metabolic rate) 
+					+ (0.02362046)*ln(WC)*ln(Basal metabolic rate) 
+					+ (-0.03904476)*ln(HC)*ln(Basal metabolic rate)]^2
+					**/
+					$(result_info).html("按公式3记算:" + VAT.toFixed(3));
+					$(result_span).fadeIn("slow");
+				}				
 			}
-			
+		//公式2
 		}else if(!checkForm2_isnull()){
 			if(checkForm2_scope()){
-				//公式2
-				$(result_info).html("公式2");
-				$(result_span).fadeIn("slow");
+				// 男
+				if(sex==1){
+					/**
+					VAT = [7.960661
+					+ (-0.00349817)*Height + (0.7277604)*ln(Weight)
+					+ (4080.28006442)*Height^(-2) + (-55.77133899)*ln(Weight)^(-2)
+					+ (-0.01239994)*ln(Weight)^(-1) + (-0.00499708)*ln(Weight)^(-0.5)
+					+ (-116.23745719)*ln(WC)^(-2) + (52.93799587)*Height^0.5
+					+ (-0.34780677)*ln(Weight)^0.5 + (0.01080505)*ln(Weight)^2
+					+ (-0.207386)*ln(HC)^2 + (0.00133936)*Age*ln(Weight)]^2
+					**/
+					var VAT = Math.pow(7.960661+ (-0.00349817)*$(Height).val() + (0.7277604)*Math.log($(Weight).val()) + (4080.28006442)*Math.pow($(Height).val(),-2) + (-55.77133899)*Math.pow(Math.log($(Weight).val()),-2)+ (-0.01239994)*Math.pow(Math.log($(Weight).val()),-1) + (-0.00499708)*Math.pow(Math.log($(Weight).val()),-0.5)+ (-116.23745719)*Math.pow(Math.log($(WC).val()),-2) + (52.93799587)*Math.pow($(Height).val(),0.5)+ (-0.34780677)*Math.pow(Math.log($(Weight).val()),0.5) + (0.01080505)*Math.pow(Math.log($(Weight).val()),2)+ (-0.207386)*Math.pow(Math.log($(HC).val()),2) + (0.00133936)*$(Age).val()*Math.log($(Weight).val()),2);
+					
+					$(result_info).html("按公式2记算:" + VAT.toFixed(3));
+					$(result_span).fadeIn("slow");
+				// 女
+				}else if(sex==0){
+					/**
+						VAT = [-5.855212 
+						+ (1.19450247)*ln(Weight) + (1.85506694)*ln(WC) 
+						+ (-1083.06434951)*Age^(-2) + (-11.29922425)*ln(Weight)^(-2) 
+						+ (-30.90779147)*ln(HC)^(-2) + (-0.00001667)*Age^2 
+						+ (18.21869961)*Height^0.5 + (-0.00001837)*Height^2 
+						+ (-0.20134894)*ln(HC)^2]^2
+					**/
+					var VAT = Math.pow(-5.855212 + (1.19450247)*Math.log($(Weight).val()) + (1.85506694)*Math.log($(WC).val())+ (-1083.06434951)*Math.pow($(Age).val(),-2) + (-11.29922425)*Math.pow(Math.log($(Weight).val()),-2) + (-30.90779147)*Math.pow(Math.log($(HC).val()),-2)  + (-0.00001667)*Math.pow($(Age).val(),2)+ (18.21869961)*Math.pow($(Height).val(),0.5) + (-0.00001837)*Math.pow($(Height).val(),2)+ (-0.20134894)*Math.pow(Math.log($(HC).val()),2),2);
+					
+					$(result_info).html("按公式2记算:" + VAT.toFixed(3));
+					$(result_span).fadeIn("slow");
+				
+				}
+				
 			}
 		//公式1
 		}else {		
@@ -304,11 +406,10 @@
 						+ (0.00218163)*Age*ln(Weight)]^2 **/
 				var VAT = Math.pow(3.643001 + (-0.01225432)*$(Height).val() + (0.85249813)*Math.log($(Weight).val()) + (31834.57241168)* Math.pow($(Height).val(),-2) + (-92.20461434)* Math.pow(Math.log($(Weight).val()),-2) + (0.00218163)*$(Age).val()*Math.log($(Weight).val()),2);
 				
-				$(result_info).html("公式1记算:" + VAT.toFixed(3));
+				$(result_info).html("按公式1记算:" + VAT.toFixed(3));
 				$(result_span).fadeIn("slow");
-			}
 			// 女
-			if(sex==0){
+			}else if(sex==0){
 				/** 原公式
 			   VAT = [-2.538071 
 						+ (-0.00618113)*Height + (1.48219618)*ln(Weight) 
@@ -322,24 +423,8 @@
 				$(result_span).fadeIn("slow");
 			}
 		}
-		
-	
-	
-	//calculate for b
-	//var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi
-	//var c = 1- Math.pow(0.975,Math.exp(-12.598+b))
-	//returnRisk = c
-	//document.getElementById("riskValue").innerHTML=Number(returnRisk *100).toFixed(2)+"%"
-	//if (returnRisk <= 0.0314 )
-	//{document.getElementById("riskCate").innerHTML="Low Risk"
-//}
-	//else if (returnRisk > 0.0314)
-	//{document.getElementById("riskCate").innerHTML="High Risk"
-//}
-	//alert(returnRisk)//结果弹窗显示
 	}
-	
-	
+		
 	function checkForm1() {	
             if ($(Age).val()!=null && $(Age).val()!="" && $(Age).val()>=0 && $(Age).val()<=120 ) {
                 $(Age).css("border", "");
@@ -367,28 +452,28 @@
 			return true;
 	}
 	function checkForm2_isnull() {	
-            if (($(wc).val()==null || $(wc).val()=="") || ($(hc).val()==null || $(hc).val()=="")) {
+            if (($(WC).val()==null || $(WC).val()=="") || ($(HC).val()==null || $(HC).val()=="")) {
 				return true;
             }
 			return false;
 	}
 	
 	function checkForm2_scope() {	
-			if($(wc).val()!=null && $(wc).val()!=""){
-				if ($(wc).val()>=15 && $(wc).val()<=250 ) {
-					$(wc).css("border", "");
+			if($(WC).val()!=null && $(WC).val()!=""){
+				if ($(WC).val()>=15 && $(WC).val()<=250 ) {
+					$(WC).css("border", "");
 				} else {
-					$(wc).css("border", "1px solid red");
-					$(wc).focus();
+					$(WC).css("border", "1px solid red");
+					$(WC).focus();
 					return false;
 				}
 			}
-			if($(hc).val()!=null && $(hc).val()!=""){
-				if($(hc).val()>=15 && $(hc).val()<=250 ) {
-					$(hc).css("border", "");
+			if($(HC).val()!=null && $(HC).val()!=""){
+				if($(HC).val()>=15 && $(HC).val()<=250 ) {
+					$(HC).css("border", "");
 				} else {
-					$(hc).css("border", "1px solid red");
-					$(hc).focus();
+					$(HC).css("border", "1px solid red");
+					$(HC).focus();
 					return false;
 				}	
 			}
