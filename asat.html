@@ -496,11 +496,11 @@
 				/**原公式
 				ASAT = [-1.600245 
 					+ (-0.01732529)*Height + (0.00001249)*Age^2 
-					+ (8615.15893324)*Height^(-2) + (0.34231978)*ln(Weight)^2]^2		
+					+ (8615.15893324)*Height^(-2) + (0.34231978)*ln(Weight)^2]^2	
 				**/		
 				var ASAT = Math.pow(-1.600245 
 					+ (-0.01732529)*Height + (0.00001249)*Math.pow(Age,2) 
-					+ (8615.15893324)*Math.pow(Height,-2) + (0.34231978)*Math.pow(Weight,2),2);
+					+ (8615.15893324)*Math.pow(Height,-2) + (0.34231978)*Math.pow(Math.log(Weight),2),2);
 						
 				$(result_info).html("ASAT按公式1记算:" + ASAT);//.toFixed(3)
 				$(result_span).fadeIn("slow");
