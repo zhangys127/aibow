@@ -473,8 +473,26 @@
 				$(result_span).fadeIn("slow");
 			}
 		}
+		init();
 	}
 		
+	function init(){
+		 Age="";	
+		 Height="";
+		 Weight="";
+		 WC="";
+		 HC="";
+		 Whole_body_fat_mass="";
+		 Whole_body_fat_free_mass="";
+		 Trunk_fat_mass="";
+		 Trunk_fat_free_mass="";
+		 Leg_fatfree_mass="";
+		 Basal_metabolic_rate="";
+		 Objgender="";
+		 sex = 1;
+		 result_info="";
+		 result_span="";
+	}
 	function checkForm1() {	
             if ($(Age).val()!=null && $(Age).val()!="" && $(Age).val()>=0 && $(Age).val()<=120 ) {
                 $(Age).css("border", "");
