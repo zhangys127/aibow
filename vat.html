@@ -10,6 +10,7 @@
 <title>腹部脂肪VAT计算</title>
 
 <script src="jquery-1.12.4.min.js"></script>
+<script src="common.js"></script>
 <link rel="stylesheet" href="css.css" media="all">
 <style type="text/css">
 .basic-grey {
@@ -27,7 +28,6 @@
 	display:block;
 	margin:0px;
 }
-
 
 </style>
 </head>
@@ -240,39 +240,36 @@
 
 <script type="text/javascript">
 
-	//get parameters from form
-	var Age;	
-	var Height;
-	var Weight;
-	var WC;
-	var HC;
-	var Whole_body_fat_mass;
-	var Whole_body_fat_free_mass;
-	var Trunk_fat_mass;
-	var Trunk_fat_free_mass;
-	var Leg_fatfree_mass;
-	var Basal_metabolic_rate;
-	var Objgender;
-	var sex = 1;//0是女性，1是男性
-	var result_info;
-	var result_span;
 	
 	function getRisk(gender){
 		Objgender = gender;
 		if(gender == "woman"){
 			sex = 0;
 		}
-		Age = $("#" + gender + "_age");	
-		Height = $("#" + gender + "_height");
-		Weight = $("#" + gender + "_weight");
-		WC = $("#" + gender + "_wc");
-		HC = $("#" + gender + "_hc");
-		Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass");
-		Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass");
-		Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass");
-		Trunk_fat_free_mass = $("#" + gender + "_Trunk_fat_free_mass");
-		Leg_fatfree_mass = $("#" + gender + "_Leg_fatfree_mass");
-		Basal_metabolic_rate = $("#" + gender + "_Basal_metabolic_rate");
+		Obj_Age = $("#" + gender + "_age");	
+		Obj_Height = $("#" + gender + "_height");
+		Obj_Weight = $("#" + gender + "_weight");
+		Obj_WC = $("#" + gender + "_wc");
+		Obj_HC = $("#" + gender + "_hc");
+		Obj_Whole_body_fat_mass = $("#" + gender + "_Whole_body_fat_mass");
+		Obj_Whole_body_fat_free_mass = $("#" + gender + "_Whole_body_fat_free_mass");
+		Obj_Trunk_fat_mass = $("#" + gender + "_Trunk_fat_mass");
+		Obj_Trunk_fat_free_mass = $("#" + gender + "_Trunk_fat_free_mass");
+		Obj_Leg_fatfree_mass = $("#" + gender + "_Leg_fatfree_mass");
+		Obj_Basal_metabolic_rate = $("#" + gender + "_Basal_metabolic_rate");
+		
+		Age = $(Obj_Age).val();	
+		Height = $(Obj_Height).val();
+		Weight = $(Obj_Weight).val();
+		WC = $(Obj_WC).val();
+		HC = $(Obj_HC).val();
+		Whole_body_fat_mass = $(Obj_Whole_body_fat_mass).val();
+		Whole_body_fat_free_mass = $(Obj_Whole_body_fat_free_mass).val();
+		Trunk_fat_mass = $(Obj_Trunk_fat_mass).val();
+		Trunk_fat_free_mass = $(Obj_Trunk_fat_free_mass).val();
+		Leg_fatfree_mass = $(Obj_Leg_fatfree_mass).val();
+		Basal_metabolic_rate = $(Obj_Basal_metabolic_rate).val();
+		
 		result_info = $("#" + gender + "_result_info");
 		result_span = $("#" + gender + "_result_span");
 		//必填验证
@@ -304,21 +301,21 @@
 					**/			
 
 					var VAT = Math.pow(7.02997 
-					+ (-0.00709324)*$(Height).val() + (0.70017640)*Math.log($(Weight).val()) 
-					+ (0.40186130)*Math.log($(WC).val()) + (6698.75701943)*Math.pow($(Height).val(),-2) 
-					+ (-13.48519743)*Math.pow(Math.log($(Weight).val()),-2) + (-0.00211944)*Math.pow(Math.log($(Weight).val()),-1) 
-					+ (-0.33382834)*Math.pow(Math.log($(Weight).val()),-0.5) + (-65.78554806)*Math.pow(Math.log($(WC).val()),-2) 
-					+ (-18.50852958)*Math.pow(Math.log($(HC).val()),-2) + (-0.03880041)*Math.pow($(Height).val(),0.5) 
-					+ (-0.23583685)*Math.pow(Math.log($(HC).val()),2) + (-0.00002049)*$(Age).val()*$(Height).val() 
-					+ (0.40155875)*Math.log($(Whole_body_fat_mass).val()) 
-					+ (0.14272295)*Math.pow($(Whole_body_fat_free_mass).val(),0.5) 
-					+ (0.00061089)*$(Age).val()*Math.pow($(Whole_body_fat_free_mass).val(),0.5)
-					+ (0.00057931)*$(Age).val()*Math.pow($(Trunk_fat_mass).val(),0.5) 
-					+ (0.00071243)*$(Height).val()*Math.log($(Whole_body_fat_mass).val()) 
-					+ (0.00058905)*$(Height).val()*Math.pow($(Trunk_fat_mass).val(),0.5) 
-					+ (-0.03711732)*Math.log($(WC).val())*Math.log($(Leg_fatfree_mass).val()) 
-					+ (-0.02433584)*Math.log($(HC).val())*Math.pow($(Trunk_fat_free_mass).val(),0.5) 
-					+ (-0.05168732)*Math.log($(HC).val())*Math.log($(Leg_fatfree_mass).val()),2);
+					+ (-0.00709324)*Height + (0.70017640)*Math.log(Weight) 
+					+ (0.40186130)*Math.log(WC) + (6698.75701943)*Math.pow(Height,-2) 
+					+ (-13.48519743)*Math.pow(Math.log(Weight),-2) + (-0.00211944)*Math.pow(Math.log(Weight),-1) 
+					+ (-0.33382834)*Math.pow(Math.log(Weight),-0.5) + (-65.78554806)*Math.pow(Math.log(WC),-2) 
+					+ (-18.50852958)*Math.pow(Math.log(HC),-2) + (-0.03880041)*Math.pow(Height,0.5) 
+					+ (-0.23583685)*Math.pow(Math.log(HC),2) + (-0.00002049)*Age*Height 
+					+ (0.40155875)*Math.log(Whole_body_fat_mass) 
+					+ (0.14272295)*Math.pow(Whole_body_fat_free_mass,0.5) 
+					+ (0.00061089)*Age*Math.pow(Whole_body_fat_free_mass,0.5)
+					+ (0.00057931)*Age*Math.pow(Trunk_fat_mass,0.5) 
+					+ (0.00071243)*Height*Math.log(Whole_body_fat_mass) 
+					+ (0.00058905)*Height*Math.pow(Trunk_fat_mass,0.5) 
+					+ (-0.03711732)*Math.log(WC)*Math.log(Leg_fatfree_mass) 
+					+ (-0.02433584)*Math.log(HC)*Math.pow(Trunk_fat_free_mass,0.5) 
+					+ (-0.05168732)*Math.log(HC)*Math.log(Leg_fatfree_mass),2);
 					
 					
 					$(result_info).html("按公式3记算:" + VAT);
@@ -360,37 +357,37 @@
 						+ (-0.06688009)*ln(HC)*ln(Basal metabolic rate)]^2
 					**/					
 					var VAT = Math.pow(9.133921 
-						+ (-0.01101650)*$(Age).val() + (-0.00368319)*$(Height).val() 
-						+ (1.30670313)*Math.log($(Weight).val()) + (0.98249140)*Math.log($(WC).val()) 
-						+ (-1.19596331)*Math.log($(HC).val()) + (-641.71362305)*Math.pow($(Age).val(),2) 
-						+ (17.48705253)*Math.pow(Math.log($(Weight).val()),-2) + (77.66830534)*Math.pow(Math.log($(WC).val()),-2)
-						+ (-186.57000789)*Math.pow(Math.log($(HC).val()),-2) + (-0.00000834)*Math.pow($(Age).val(),2)
-						+ (-0.07279930)*Math.pow($(Height).val(),0.5) + (-0.00001142)*Math.pow($(Height).val(),2) 
-						+ (0.03077904)*Math.pow(Math.log($(Weight).val()),2) + (0.00004728)*Math.pow(Math.log($(WC).val()),2) 
-						+ (-3.18081213)*Math.pow(Math.log($(HC).val()),0.5) + (-0.16815866)*Math.pow(Math.log($(HC).val()),2) 
-						+ (0.00213220)*$(Age).val()*Math.log($(Weight).val()) + (0.00147845)*$(Height).val()*Math.log($(Weight).val()) 
-						+ (0.00250822)*$(Height).val()*Math.log($(WC).val()) + (-0.00228209)*$(Height).val()*Math.log($(HC).val()) 
-						+ (0.22775430)*Math.log($(Weight).val())*Math.log($(WC).val()) + (-0.12615820)*Math.log($(Weight).val())*Math.log($(HC).val()) 
-						+ (-0.95245764)*Math.log($(Trunk_fat_free_mass).val()) + (-1.07270784)*Math.log($(Leg_fatfree_mass).val()) 
-						+ (0.00094248)*$(Age).val()*Math.log($(Whole_body_fat_mass).val()) 
-						+ (0.00087809)*$(Age).val()*Math.log($(Whole_body_fat_free_mass).val()) 
-						+ (0.00789404)*$(Age).val()*Math.log($(Leg_fatfree_mass).val()) 
-						+ (0.00217830)*$(Height).val()*Math.log($(Whole_body_fat_mass).val()) 
-						+ (0.00012014)*$(Height).val()*Math.pow($(Trunk_fat_mass).val(),0.5) 
-						+ (-0.00143644)*$(Height).val()*Math.log($(Trunk_fat_free_mass).val())
-						+ (-0.00168733)*$(Height).val()*Math.log($(Leg_fatfree_mass).val()) 
-						+ (0.02279138)*Math.log($(Weight).val())*Math.log($(Whole_body_fat_mass).val()) 
-						+ (0.01664763)*Math.log($(Weight).val())*Math.log($(Whole_body_fat_free_mass).val()) 
-						+ (0.06974431)*Math.log($(WC).val())*Math.log($(Whole_body_fat_mass).val()) 
-						+ (0.05844917)*Math.log($(WC).val())*Math.log($(Whole_body_fat_free_mass).val()) 
-						+ (-0.10666286)*Math.log($(HC).val())*Math.log($(Whole_body_fat_mass).val()) 
-						+ (-0.01945750)*Math.log($(HC).val())*Math.pow($(Trunk_fat_mass).val(),0.5) 
-						+ (-0.00220984)*Math.log($(HC).val())*Math.log($(Trunk_fat_free_mass).val()) 
-						+ (-0.04479566)*Math.log($(HC).val())*Math.log($(Leg_fatfree_mass).val()) 
-						+ (0.64297158)*Math.log($(Basal_metabolic_rate).val())
-						+ (-0.00209414)*$(Age).val()*Math.log($(Basal_metabolic_rate).val()) 
-						+ (0.07788880)*Math.log($(WC).val())*Math.log($(Basal_metabolic_rate).val()) 
-						+ (-0.06688009)*Math.log($(HC).val())*Math.log($(Basal_metabolic_rate).val()),2);
+						+ (-0.01101650)*Age + (-0.00368319)*Height 
+						+ (1.30670313)*Math.log(Weight) + (0.98249140)*Math.log(WC) 
+						+ (-1.19596331)*Math.log(HC) + (-641.71362305)*Math.pow(Age,2) 
+						+ (17.48705253)*Math.pow(Math.log(Weight),-2) + (77.66830534)*Math.pow(Math.log(WC),-2)
+						+ (-186.57000789)*Math.pow(Math.log(HC),-2) + (-0.00000834)*Math.pow(Age,2)
+						+ (-0.07279930)*Math.pow(Height,0.5) + (-0.00001142)*Math.pow(Height,2) 
+						+ (0.03077904)*Math.pow(Math.log(Weight),2) + (0.00004728)*Math.pow(Math.log(WC),2) 
+						+ (-3.18081213)*Math.pow(Math.log(HC),0.5) + (-0.16815866)*Math.pow(Math.log(HC),2) 
+						+ (0.00213220)*Age*Math.log(Weight) + (0.00147845)*Height*Math.log(Weight) 
+						+ (0.00250822)*Height*Math.log(WC) + (-0.00228209)*Height*Math.log(HC) 
+						+ (0.22775430)*Math.log(Weight)*Math.log(WC) + (-0.12615820)*Math.log(Weight)*Math.log(HC) 
+						+ (-0.95245764)*Math.log(Trunk_fat_free_mass) + (-1.07270784)*Math.log(Leg_fatfree_mass) 
+						+ (0.00094248)*Age*Math.log(Whole_body_fat_mass) 
+						+ (0.00087809)*Age*Math.log(Whole_body_fat_free_mass) 
+						+ (0.00789404)*Age*Math.log(Leg_fatfree_mass) 
+						+ (0.00217830)*Height*Math.log(Whole_body_fat_mass) 
+						+ (0.00012014)*Height*Math.pow(Trunk_fat_mass,0.5) 
+						+ (-0.00143644)*Height*Math.log(Trunk_fat_free_mass)
+						+ (-0.00168733)*Height*Math.log(Leg_fatfree_mass) 
+						+ (0.02279138)*Math.log(Weight)*Math.log(Whole_body_fat_mass) 
+						+ (0.01664763)*Math.log(Weight)*Math.log(Whole_body_fat_free_mass) 
+						+ (0.06974431)*Math.log(WC)*Math.log(Whole_body_fat_mass) 
+						+ (0.05844917)*Math.log(WC)*Math.log(Whole_body_fat_free_mass) 
+						+ (-0.10666286)*Math.log(HC)*Math.log(Whole_body_fat_mass) 
+						+ (-0.01945750)*Math.log(HC)*Math.pow(Trunk_fat_mass,0.5) 
+						+ (-0.00220984)*Math.log(HC)*Math.log(Trunk_fat_free_mass) 
+						+ (-0.04479566)*Math.log(HC)*Math.log(Leg_fatfree_mass) 
+						+ (0.64297158)*Math.log(Basal_metabolic_rate)
+						+ (-0.00209414)*Age*Math.log(Basal_metabolic_rate) 
+						+ (0.07788880)*Math.log(WC)*Math.log(Basal_metabolic_rate) 
+						+ (-0.06688009)*Math.log(HC)*Math.log(Basal_metabolic_rate),2);
 					$(result_info).html("按公式3记算:" + VAT);
 					$(result_span).fadeIn("slow");
 				}				
@@ -411,12 +408,12 @@
 						+ (-0.20562981)*ln(HC)^2 + (0.00133643)*Age*ln(Weight)]^2
 					**/
 					
-					var VAT = Math.pow(12.44193+ (-0.00075998)*$(Height).val() + (0.75110017)*Math.log($(Weight).val())
-					+ (20410.72706072)*Math.pow($(Height).val(),-2) + (-53.91258858)*Math.pow(Math.log($(Weight).val()),-2)
-					+ (-0.01167444)*Math.pow(Math.log($(Weight).val()),-1) + (-0.00465062)*Math.pow(Math.log($(Weight).val()),-0.5)
-					+ (-116.11240378)*Math.pow(Math.log($(WC).val()),-2) + (-0.21279078)*Math.pow($(Height).val(),0.5)
-					+ (0.53552198)*Math.pow(Math.log($(Weight).val()),0.5) + (0.00004120)*Math.pow(Math.log($(Weight).val()),2)
-					+ (-0.20562981)*Math.pow(Math.log($(HC).val()),2) + (0.00133643)*$(Age).val()*Math.log($(Weight).val()),2);
+					var VAT = Math.pow(12.44193+ (-0.00075998)*Height + (0.75110017)*Math.log(Weight)
+					+ (20410.72706072)*Math.pow(Height,-2) + (-53.91258858)*Math.pow(Math.log(Weight),-2)
+					+ (-0.01167444)*Math.pow(Math.log(Weight),-1) + (-0.00465062)*Math.pow(Math.log(Weight),-0.5)
+					+ (-116.11240378)*Math.pow(Math.log(WC),-2) + (-0.21279078)*Math.pow(Height,0.5)
+					+ (0.53552198)*Math.pow(Math.log(Weight),0.5) + (0.00004120)*Math.pow(Math.log(Weight),2)
+					+ (-0.20562981)*Math.pow(Math.log(HC),2) + (0.00133643)*Age*Math.log(Weight),2);
 					
 					
 					$(result_info).html("按公式2记算:" + VAT);//.toFixed(3)
@@ -432,7 +429,7 @@
 						+ (-0.00001672)*Age^2 + (-0.17344295)*Height^0.5 
 						+ (-0.00001098)*Height^2 + (-0.20390734)*ln(HC)^2]^2
 					**/
-					var VAT = Math.pow(-2.349566+ (-0.00000094)*$(Height).val() + (1.20227727)*Math.log($(Weight).val())+ (1.85505101)*Math.log($(WC).val()) + (-1083.68576408)*Math.pow($(Age).val(),-2)+ (-11.00973494)*Math.pow(Math.log($(Weight).val()),-2) + (-32.06868861)*Math.pow(Math.log($(HC).val()),-2)+ (-0.00001672)*Math.pow($(Age).val(),2) + (-0.17344295)*Math.pow($(Height).val(),0.5)+ (-0.00001098)*Math.pow($(Height).val(),2) + (-0.20390734)*Math.pow(Math.log($(HC).val()),2),2);
+					var VAT = Math.pow(-2.349566+ (-0.00000094)*Height + (1.20227727)*Math.log(Weight)+ (1.85505101)*Math.log(WC) + (-1083.68576408)*Math.pow(Age,-2)+ (-11.00973494)*Math.pow(Math.log(Weight),-2) + (-32.06868861)*Math.pow(Math.log(HC),-2)+ (-0.00001672)*Math.pow(Age,2) + (-0.17344295)*Math.pow(Height,0.5)+ (-0.00001098)*Math.pow(Height,2) + (-0.20390734)*Math.pow(Math.log(HC),2),2);
 					
 					$(result_info).html("按公式2记算:" + VAT);
 					$(result_span).fadeIn("slow");
@@ -451,7 +448,7 @@
 						+ (31658.99621899)*Height^(-2) + (-92.22010100)*ln(Weight)^(-2) 
 						+ (0.00218159)*Age*ln(Weight)]^2		
 				**/		
-				var VAT = Math.pow(3.662482 + (-0.01231925)*$(Height).val() + (0.85214619)*Math.log($(Weight).val()) + (31658.99621899)* Math.pow($(Height).val(),-2) + (-92.22010100)* Math.pow(Math.log($(Weight).val()),-2) + (0.00218159)*$(Age).val()*Math.log($(Weight).val()),2);
+				var VAT = Math.pow(3.662482 + (-0.01231925)*Height + (0.85214619)*Math.log(Weight) + (31658.99621899)* Math.pow(Height,-2) + (-92.22010100)* Math.pow(Math.log(Weight),-2) + (0.00218159)*Age*Math.log(Weight),2);
 						
 				$(result_info).html("按公式1记算:" + VAT);//.toFixed(3)
 				$(result_span).fadeIn("slow");
@@ -467,7 +464,7 @@
 					+ (-26.16828233)*ln(Weight)^(-2)]^2
 				
 				**/
-				var VAT = Math.pow(-2.071506+ (-0.00599053)*$(Height).val() + (1.48042566)*Math.log($(Weight).val())+ (-1155.41236559)*Math.pow($(Age).val(),-2) + (6179.19850049)*Math.pow($(Height).val(),-2)+ (60.39455514)*Math.pow($(Height).val(),-1) + (4.31435010)* Math.pow($(Height).val(),-0.5)+ (-0.04794854)*Math.pow($(Height).val(),0.5) + (-0.00000716)*Math.pow($(Height).val(),2)+ (-26.16828233)*Math.pow(Math.log($(Weight).val()),-2),2);
+				var VAT = Math.pow(-2.071506+ (-0.00599053)*Height + (1.48042566)*Math.log(Weight)+ (-1155.41236559)*Math.pow(Age,-2) + (6179.19850049)*Math.pow(Height,-2)+ (60.39455514)*Math.pow(Height,-1) + (4.31435010)* Math.pow(Height,-0.5)+ (-0.04794854)*Math.pow(Height,0.5) + (-0.00000716)*Math.pow(Height,2)+ (-26.16828233)*Math.pow(Math.log(Weight),-2),2);
 				
 				$(result_info).html("公式1记算:" + VAT);//.toFixed(3)
 				$(result_span).fadeIn("slow");
@@ -476,147 +473,7 @@
 		init();
 	}
 		
-	function init(){
-		 Age="";	
-		 Height="";
-		 Weight="";
-		 WC="";
-		 HC="";
-		 Whole_body_fat_mass="";
-		 Whole_body_fat_free_mass="";
-		 Trunk_fat_mass="";
-		 Trunk_fat_free_mass="";
-		 Leg_fatfree_mass="";
-		 Basal_metabolic_rate="";
-		 Objgender="";
-		 sex = 1;
-		 result_info="";
-		 result_span="";
-	}
-	function checkForm1() {	
-            if ($(Age).val()!=null && $(Age).val()!="" && $(Age).val()>=0 && $(Age).val()<=120 ) {
-                $(Age).css("border", "");
-            } else {
-                $(Age).css("border", "1px solid red");
-				$(Age).focus();
-				return false;
-            }
-            
-            if ($(Height).val()!=null && $(Height).val()!="" && $(Height).val()>=50 && $(Height).val()<=250 ) {
-                $(Height).css("border", "");
-            } else {
-                $(Height).css("border", "1px solid red");
-				$(Height).focus();
-				return false;
-            }
-			
-            if ($(Weight).val()!=null && $(Weight).val()!="" && $(Weight).val()>=20 && $(Weight).val()<=250 ) {
-                $(Weight).css("border", "");
-            } else {
-                $(Weight).css("border", "1px solid red");
-				$(Weight).focus();
-				return false;
-            }
-			return true;
-	}
-	function checkForm2_isnull() {	
-            if (($(WC).val()==null || $(WC).val()=="") || ($(HC).val()==null || $(HC).val()=="")) {
-				return true;
-            }
-			return false;
-	}
-	
-	function checkForm2_scope() {	
-			if($(WC).val()!=null && $(WC).val()!=""){
-				if ($(WC).val()>=15 && $(WC).val()<=250 ) {
-					$(WC).css("border", "");
-				} else {
-					$(WC).css("border", "1px solid red");
-					$(WC).focus();
-					return false;
-				}
-			}
-			if($(HC).val()!=null && $(HC).val()!=""){
-				if($(HC).val()>=15 && $(HC).val()<=250 ) {
-					$(HC).css("border", "");
-				} else {
-					$(HC).css("border", "1px solid red");
-					$(HC).focus();
-					return false;
-				}	
-			}
-			return true;
-	}
-	
-	function checkForm3_isnull() {	
-			if ($(Whole_body_fat_mass).val()==null || $(Whole_body_fat_mass).val()=="" ||
-			$(Whole_body_fat_free_mass).val()==null || $(Whole_body_fat_free_mass).val()=="" ||
-			$(Trunk_fat_mass).val()==null || $(Trunk_fat_mass).val()=="" || 
-			$(Trunk_fat_free_mass).val()==null || $(Trunk_fat_free_mass).val()=="" || 
-			$(Leg_fatfree_mass).val()==null || $(Leg_fatfree_mass).val()=="" || 
-			$(Basal_metabolic_rate).val()==null || $(Basal_metabolic_rate).val()==""){
-				return true;
-			}           
-			return false;
-	}
-	
-	function checkForm3_scope() {	
-			if($(Whole_body_fat_mass).val()!=null && $(Whole_body_fat_mass).val()!=""){
-				if($(Whole_body_fat_mass).val()>=0 && $(Whole_body_fat_mass).val()<=150 ) {
-					$(Whole_body_fat_mass).css("border", "");
-				} else {
-					$(Whole_body_fat_mass).css("border", "1px solid red");
-					$(Whole_body_fat_mass).focus();
-					return false;
-				}
-			}
-			if($(Whole_body_fat_free_mass).val()!=null && $(Whole_body_fat_free_mass).val()!=""){
-				if($(Whole_body_fat_free_mass).val()>=0 && $(Whole_body_fat_free_mass).val()<=150 ) {
-					$(Whole_body_fat_free_mass).css("border", "");
-				} else {
-					$(Whole_body_fat_free_mass).css("border", "1px solid red");
-					$(Whole_body_fat_free_mass).focus();
-					return false;
-				}
-			}
-			if($(Trunk_fat_mass).val()!=null && $(Trunk_fat_mass).val()!=""){
-				if($(Trunk_fat_mass).val()>=0 && $(Trunk_fat_mass).val()<=80 ) {
-					$(Trunk_fat_mass).css("border", "");
-				} else {
-					$(Trunk_fat_mass).css("border", "1px solid red");
-					$(Trunk_fat_mass).focus();
-					return false;
-				}
-			}
-			if($(Trunk_fat_free_mass).val()!=null && $(Trunk_fat_free_mass).val()!=""){
-				if($(Trunk_fat_free_mass).val()>=0 && $(Trunk_fat_free_mass).val()<=80 ) {
-					$(Trunk_fat_free_mass).css("border", "");
-				} else {
-					$(Trunk_fat_free_mass).css("border", "1px solid red");
-					$(Trunk_fat_free_mass).focus();
-					return false;
-				}
-			}
-			if($(Leg_fatfree_mass).val()!=null && $(Leg_fatfree_mass).val()!=""){
-				if($(Leg_fatfree_mass).val()>=0 && $(Leg_fatfree_mass).val()<=40 ) {
-					$(Leg_fatfree_mass).css("border", "");
-				} else {
-					$(Leg_fatfree_mass).css("border", "1px solid red");
-					$(Leg_fatfree_mass).focus();
-					return false;
-				}
-			}
-			if($(Basal_metabolic_rate).val()!=null && $(Basal_metabolic_rate).val()!=""){
-				if($(Basal_metabolic_rate).val()>=500 && $(Basal_metabolic_rate).val()<=30000 ) {
-					$(Basal_metabolic_rate).css("border", "");
-				} else {
-					$(Basal_metabolic_rate).css("border", "1px solid red");
-					$(Basal_metabolic_rate).focus();
-					return false;
-				}
-			}
-			return true;
-	}
+
 </script>
 
 </body>
