@@ -103,7 +103,9 @@
 			/>
 		</label>
 		<label>
-			<input type="button" class="button" id="man_button" name="man_button" value="Calculate" onclick="getRisk('man')"/>
+			<input type="button" class="button" id="man_button" name="man_button" value="Calculate" onclick="getRisk('man')"/>	
+			<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)">CSV Import</button>
+			<input type="file" id="csvFileInput_1" onchange="readCSVFile(this,'ASAT',1)" style="position: absolute;right: 0px;opacity: 0;"/>
 		</label>
 		
 		<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
@@ -201,6 +203,8 @@
 		</label>
 		<label>
 			<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate" onclick="getRisk('woman')"/>
+			<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)">CSV Import</button>
+			<input type="file" id="csvFileInput_0" onchange="readCSVFile(this,'ASAT',0)" style="position: absolute;right: 0px;opacity: 0;"/>
 		</label>
 		
 		<label style="display:none;margin-top: 20px" class="explain" id="woman_result_span">

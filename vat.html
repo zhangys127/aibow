@@ -105,11 +105,10 @@
 		/>
 	</label>
 	<label>
-		<input type="button" class="button" id="man_button" name="man_button" value="Calculate" onclick="getRisk('man')"/>
-		<!--
-		<button type="button" class="button" name="seach" onclick="FuncCSVInport()">CSV Import</button>
-		<input type="file" id="csvFileInput" onchange="readCSVFile(this)" style="position: absolute;right: 0px;opacity: 0;"/>
-	-->
+		<input type="button" class="button" id="man_button" name="man_button" value="Calculate" onclick="getRisk('man')"/>		
+		<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)">CSV Import</button>
+		<input type="file" id="csvFileInput_1" onchange="readCSVFile(this,'VAT',1)" style="position: absolute;right: 0px;opacity: 0;"/>
+	
 	</label>
 	
 	<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
@@ -206,7 +205,10 @@
 		 value="5171"/>
 	</label>
 	<label>
-		<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate" onclick="getRisk('woman')"/>
+		<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate" onclick="getRisk('woman')"/>			
+		<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)">CSV Import</button>
+		<input type="file" id="csvFileInput_0" onchange="readCSVFile(this,'VAT',0)" style="position: absolute;right: 0px;opacity: 0;"/>		
+		<!--<a href="model.csv"><input type="button" class="button" value="model"/>	</a>-->
 	</label>
 	
 	<label style="display:none;margin-top: 20px" class="explain" id="woman_result_span">
@@ -248,9 +250,10 @@
 		Basal_metabolic_rate = $(Obj_Basal_metabolic_rate).val();
 		
 		//必填验证
-		if(!checkForm1()){
+		if(!checkForm1()){		
 			return false;
 		}
+		
 		var result = "";
 		//公式3
 		if(!checkForm2_isnull() && !checkForm3_isnull()){

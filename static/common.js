@@ -504,24 +504,192 @@ function csvToObject(csvString){
 	for(var i = 1;i<csvarry.length;i++){
 		var data = {};
 		var temp = csvarry[i].split(",");
-			 for(var j = 0;j<temp.length;j++){
-				 data[headers[j]] = temp[j];
-			 }
+		if(temp==""){
+			continue;
+		}
+		for(var j = 0;j<temp.length;j++){
+			data[headers[j]] = temp[j];
+		}
 		datas.push(data);
 	}
 	 return datas;
 }
 
- function FuncCSVInport() {
-	 $("#csvFileInput").val("");
-	 $("#csvFileInput").click();
- }
 
- function readCSVFile(obj) {
+ function FuncCSVInport(gender) {
+	 $("#csvFileInput_" + gender).val("");
+	$("#csvFileInput_" + gender).click();
+ }
+ function readCSVFile(obj,type,gender) {
 	 var reader = new FileReader();
 	 reader.readAsText(obj.files[0]);
+
 	 reader.onload = function () {
-		   var data = csvToObject(this.result);
-			console.log(data);//data为csv转换后的对象
+		   var datas = csvToObject(this.result);
+			//console.log(data);
+			if(datas.length==0){
+				alert("file is null");
+				return;
+			}
+			
+			const rows = [];
+			let header =[];
+			if(type == "VAT"){
+				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3"];
+			}else if(type == "ASAT"){
+				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
+			}else{
+				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
+			}
+			rows.push(header);
+			var msg="";
+			for(var i = 0;i<datas.length;i++){
+				var data = datas[i];
+				msg = batchCheck1(data,gender);
+				if(msg != ""){
+					alert(msg);
+					return;
+				}
+				let row = [];
+				if(type == "VAT"){		
+					var VAT_LASSO_mod1 = compute_vat(data.sex,1,data.age,data.height,data.weight);
+					var VAT_LASSO_mod2="";
+					var VAT_LASSO_mod3="";
+					
+					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+						msg = batchCheck2(data);
+						if(msg != ""){
+							alert(msg);
+							return;
+						}
+						VAT_LASSO_mod2 = compute_vat(data.sex,2,data.age,data.height,data.weight,data.WC,data.HC);
+						
+						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
+							msg = batchCheck3(data);
+							if(msg != ""){
+								alert(msg);
+								return;
+							}	
+							VAT_LASSO_mod3 = compute_vat(data.sex,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
+						}
+					}	
+					row = [data.eid,data.age,data.sex,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,VAT_LASSO_mod1,VAT_LASSO_mod2,VAT_LASSO_mod3];
+				}else if(type == "ASAT"){
+					var SAT_LASSO_mod1 = compute_asat(data.sex,1,data.age,data.height,data.weight);					
+					var SAT_LASSO_mod2="";
+					var SAT_LASSO_mod3="";
+					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+						msg = batchCheck2(data);
+						if(msg != ""){
+							alert(msg);
+							return;
+						}
+						SAT_LASSO_mod2 = compute_asat(data.sex,2,data.age,data.height,data.weight,data.WC,data.HC);
+						
+						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
+							msg = batchCheck3(data);
+							if(msg != ""){
+								alert(msg);
+								return;
+							}	
+							SAT_LASSO_mod3 = compute_asat(data.sex,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);	
+						}
+					}	
+					row = [data.eid,data.age,data.sex,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,SAT_LASSO_mod1,SAT_LASSO_mod2,SAT_LASSO_mod3];			
+				}else{
+					var FFMV_LASSO_mod1 = compute_ffmv(data.sex,1,data.age,data.height,data.weight);					
+					var FFMV_LASSO_mod2="";
+					var FFMV_LASSO_mod3="";
+					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+						msg = batchCheck2(data);
+						if(msg != ""){
+							alert(msg);
+							return;
+						}
+						FFMV_LASSO_mod2 = compute_ffmv(data.sex,2,data.age,data.height,data.weight,data.WC,data.HC);
+						
+						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
+							msg = batchCheck3(data);
+							if(msg != ""){
+								alert(msg);
+								return;
+							}	
+							FFMV_LASSO_mod3 = compute_ffmv(data.sex,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
+						}
+					}						
+					
+					row = [data.eid,data.age,data.sex,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,FFMV_LASSO_mod1,FFMV_LASSO_mod2,FFMV_LASSO_mod3];
+				}				
+				rows.push(row);
+			}			
+			var file_name = (type + "-") + (gender==1?"Male":"Female") + "-Results";
+			downloadCvs(rows,file_name)
 	}
+}
+
+function batchCheck1(data,gender) {
+	var msg="";
+	if(gender!=data.sex){
+		msg = msg + data.eid + " has a sex error" + "\n";
+	}
+	if(data.age==null ||  data.age<0 || data.age>120 ){
+		msg = msg + data.eid + " has an Age error" + "\n";
+	}
+	if(data.height==null || data.height<50 || data.height>250){
+		msg = msg + data.eid + " has a Height error" + "\n";
+	}
+	if(data.weight==null || data.weight<20 || data.weight>250){
+		msg = msg + data.eid + " has a Weight error" + "\n";
+	}
+	return msg;
+}
+
+function batchCheck2(data) {	
+	var msg="";
+	if (data.WC<15 || data.WC>250 ) {
+		msg = msg + data.eid + " has a WC error" + "\n";
+	}
+	if (data.HC<15 || data.HC>250 ) {
+		msg = msg + data.eid + " has a HC error" + "\n";
+	}
+	return msg;
+}
+
+function batchCheck3(data) {	
+	var msg="";
+	if (data.Whole_body_fat_mass<0 || data.Whole_body_fat_mass>150 ) {
+		msg = msg + data.eid + " has a Whole_body_fat_mass error" + "\n";
+	}
+	if (data.Whole_body_fat_free_mass<0 || data.Whole_body_fat_free_mass>150 ) {
+		msg = msg + data.eid + " has a Whole_body_fat_free_mass error" + "\n";
+	}
+	if (data.Trunk_fat_mass<0 || data.Trunk_fat_mass>80 ) {
+		msg = msg + data.eid + " has a Trunk_fat_mass error" + "\n";
+	}
+	if (data.Trunk_fat_free_mass<0 || data.Trunk_fat_free_mass>80 ) {
+		msg = msg + data.eid + " has a Trunk_fat_free_mass error" + "\n";
+	}
+	if (data.Leg_fatfree_mass<0 || data.Leg_fatfree_mass>40 ) {
+		msg = msg + data.eid + " has a Leg_fatfree_mass error" + "\n";
+	}
+	if (data.Basal_metabolic_rate<500 || data.Basal_metabolic_rate>30000 ) {
+		msg = msg + data.eid + " has a Trunk_fat_mass error" + "\n";
+	}
+	return msg;
+}
+
+
+function downloadCvs(rows,file_name){
+	let csvContent = rows.map(e => e.join(",")).join("\n");	
+	let link = document.createElement("a")
+	let exportContent = '\uFEFF'
+	let blob = new Blob([exportContent+csvContent],{
+		type:'text/plain;charset=utrf-8'
+	})
+	link.id = "download-csv"
+	link.setAttribute("href", URL.createObjectURL(blob))
+	link.setAttribute('download', file_name + ".csv")
+	document.body.appendChild(link)
+	link.click()
+	
 }
