@@ -20,9 +20,9 @@
 
 	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
 		<h1>		
-			男性内脏脂肪ASAT
+			ASAT estimate for male
 			<span style="color:red">
-				Age,height,weight为必选项，其他数据填写越详细结果越精准.
+				Age,height,weight are required. Others are optional. But more data filled in provides more accurate estimates.
 			</span>
 		</h1>
 		<label>
@@ -126,9 +126,9 @@
 
 	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
 		<h1>		
-			女性内脏脂肪ASAT
+			ASAT estimate for female
 			<span style="color:red">
-				Age,height,weight为必选项，其他数据填写越详细结果越精准.
+				Age,height,weight are required. Others are optional. But more data filled in provides more accurate estimates.
 			</span>
 		</h1>
 		<label>
@@ -253,26 +253,27 @@
 		Leg_fatfree_mass = $(Obj_Leg_fatfree_mass).val();
 		Basal_metabolic_rate = $(Obj_Basal_metabolic_rate).val();
 		
-		result_info = $("#" + gender + "_result_info");
-		result_span = $("#" + gender + "_result_span");
 		//必填验证
 		if(!checkForm1()){
 			return false;
 		}
+		var result = "";
 		//公式3
 		if(!checkForm2_isnull() && !checkForm3_isnull()){
 			if(checkForm2_scope() && checkForm3_scope()){
-				compute_asat(sex,3);
+				result =compute_asat(sex,3,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate);
 			}
 		//公式2
 		}else if(!checkForm2_isnull()){
 			if(checkForm2_scope()){
-				compute_asat(sex,2);
+				result =compute_asat(sex,2,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate);
 			}
 		//公式1
 		}else {	
-			compute_asat(sex,1);
+			result =compute_asat(sex,1,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate);
 		}
+		$("#" + gender + "_result_info").html(result);
+		$("#" + gender + "_result_span").fadeIn("slow");
 		init();
 	}
 		

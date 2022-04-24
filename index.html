@@ -10,9 +10,16 @@
 	<title>论文标题-首页</title>
 	<link rel="stylesheet" href="static/css.css" media="all">
 	<style type="text/css">
+		.main-box{		
+			width:100%
+		}
 		.basic-grey {
-			margin-top:12%;
-			width:800px
+			margin-top:7%;
+			width:1300px
+		}
+		.index-input{
+			margin-top:20px;
+			font-size:18px;
 		}
 	</style>
 </head>
@@ -22,17 +29,17 @@
 <div class="main-box">
 <form class="basic-grey">
 	<h1>
-		论文标题
+		Development and external validation of MRI measured fat and muscle volume prediction models in UK Biobank
 		<span>
 			论文作者论文作者论文作者论文作者论文作者
 		</span>
 	</h1>
-	<label>
-		<a href="vat.html"><input type="button" class="button" value="计算腹部脂肪VAT" /></a>
-	
-		<a href="asat.html"><input type="button" class="button" value="计算内脏脂肪ASAT" /></a>
-	
-		<a href="ffmv.html"><input type="button" class="button" value="计算去脂肌肉FFMV" /></a>
+	<label style = "text-align:left;margin-left:200px;">
+		<a href="vat.html"><input type="button" class="button index-input" value="isceral adipose tissue (VAT) estimate" /></a>
+		<br/>
+		<a href="asat.html"><input type="button" class="button index-input" value="Abdominal subcutaneous adipose tissue (ASAT) estimate" /></a>
+		<br/>
+		<a href="ffmv.html"><input type="button" class="button index-input" value="Thigh fat-free muscle volume (FFMV) estimate" /></a>
 	</label>
 </form>
 </div>

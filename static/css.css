@@ -53,12 +53,14 @@
 	border-bottom:1px solid #E4E4E4;
 	margin:-10px -15px 30px -10px;
 	color:#888;
+	text-align: left;
 }
 .basic-grey h1>span {
 	display:block;
 	font-size:11px;
 	padding-top:20px;
 	padding-bottom:10px;
+	text-align: left;
 }
 .basic-grey label {
 	display:block;

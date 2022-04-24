@@ -158,7 +158,7 @@ function checkForm3_scope() {
 }
 
 /** VAT compute **/
-function compute_vat(sex,Model){
+function compute_vat(sex,Model,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate){
 	var VAT = "";
 	if(Model==1){
 		// Male
@@ -170,9 +170,6 @@ function compute_vat(sex,Model){
 		// Female
 		}else if(sex==0){
 			VAT = Math.pow(-2.071506+ (-0.00599053)*Height + (1.48042566)*Math.log(Weight)+ (-1155.41236559)*Math.pow(Age,-2) + (6179.19850049)*Math.pow(Height,-2)+ (60.39455514)*Math.pow(Height,-1) + (4.31435010)* Math.pow(Height,-0.5)+ (-0.04794854)*Math.pow(Height,0.5) + (-0.00000716)*Math.pow(Height,2)+ (-26.16828233)*Math.pow(Math.log(Weight),-2),2);
-			
-			$(result_info).html("公式1记算:" + VAT);//.toFixed(3)
-			$(result_span).fadeIn("slow");
 		}
 	}else if(Model==2){
 			// Male
@@ -183,10 +180,6 @@ function compute_vat(sex,Model){
 				+ (-116.11240378)*Math.pow(Math.log(WC),-2) + (-0.21279078)*Math.pow(Height,0.5)
 				+ (0.53552198)*Math.pow(Math.log(Weight),0.5) + (0.00004120)*Math.pow(Math.log(Weight),2)
 				+ (-0.20562981)*Math.pow(Math.log(HC),2) + (0.00133643)*Age*Math.log(Weight),2);
-				
-				
-				$(result_info).html("按公式2记算:" + VAT);//.toFixed(3)
-				$(result_span).fadeIn("slow");
 			// Female
 			}else if(sex==0){
 				VAT = Math.pow(-2.349566+ (-0.00000094)*Height + (1.20227727)*Math.log(Weight)+ (1.85505101)*Math.log(WC) + (-1083.68576408)*Math.pow(Age,-2)+ (-11.00973494)*Math.pow(Math.log(Weight),-2) + (-32.06868861)*Math.pow(Math.log(HC),-2)+ (-0.00001672)*Math.pow(Age,2) + (-0.17344295)*Math.pow(Height,0.5)+ (-0.00001098)*Math.pow(Height,2) + (-0.20390734)*Math.pow(Math.log(HC),2),2);
@@ -215,10 +208,6 @@ function compute_vat(sex,Model){
 			+ (-0.03711732)*Math.log(WC)*Math.log(Leg_fatfree_mass) 
 			+ (-0.02433584)*Math.log(HC)*Math.pow(Trunk_fat_free_mass,0.5) 
 			+ (-0.05168732)*Math.log(HC)*Math.log(Leg_fatfree_mass),2);
-			
-			
-			$(result_info).html("按公式3记算:" + VAT);
-			$(result_span).fadeIn("slow");
 		// Female
 		}else if(sex==0){
 			VAT = Math.pow(9.133921 
@@ -253,16 +242,13 @@ function compute_vat(sex,Model){
 				+ (-0.00209414)*Age*Math.log(Basal_metabolic_rate) 
 				+ (0.07788880)*Math.log(WC)*Math.log(Basal_metabolic_rate) 
 				+ (-0.06688009)*Math.log(HC)*Math.log(Basal_metabolic_rate),2);
-			$(result_info).html("按公式3记算:" + VAT);
-			$(result_span).fadeIn("slow");
 		}	
 	}	
+	return VAT.toFixed(3)
 }
 
-
-
 /** asat compute **/
-function compute_asat(sex,Model){
+function compute_asat(sex,Model,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate){
 	var ASAT="";
 	if(Model==1){
 		// 男
@@ -270,9 +256,6 @@ function compute_asat(sex,Model){
 			ASAT = Math.pow(-1.600245 
 				+ (-0.01732529)*Height + (0.00001249)*Math.pow(Age,2) 
 				+ (8615.15893324)*Math.pow(Height,-2) + (0.34231978)*Math.pow(Math.log(Weight),2),2);
-					
-			$(result_info).html("ASAT按公式1记算:" + ASAT);//.toFixed(3)
-			$(result_span).fadeIn("slow");
 		// 女
 		}else if(sex==0){
 			ASAT = Math.pow(-6.863189 
@@ -282,9 +265,6 @@ function compute_asat(sex,Model){
 				+ (-0.03651642)*Math.pow(Height,0.5) + (-0.00000475)*Math.pow(Height,2) 
 				+ (-23.42375422)*Math.pow(Math.log(Weight),-2) + (-0.00342952)*Age*Math.log(Weight) 
 				+ (0.00000953)*Height*Math.log(Weight),2);
-			
-			$(result_info).html("ASAT公式1记算:" + ASAT);//.toFixed(3)
-			$(result_span).fadeIn("slow");
 		}
 	}else if(Model==2){
 		// 男
@@ -296,9 +276,6 @@ function compute_asat(sex,Model){
 				+ (-0.00007486)*Age*Math.log(WC) + (0.32626608)*Math.log(Weight)*Math.log(WC) 
 				+ (0.00005808)*Math.log(Weight)*Math.log(HC),2);
 			
-			
-			$(result_info).html("按公式2记算:" + ASAT);//.toFixed(3)
-			$(result_span).fadeIn("slow");
 		// 女
 		}else if(sex==0){					
 			ASAT = Math.pow(-9.606913 
@@ -315,18 +292,12 @@ function compute_asat(sex,Model){
 				+ (-0.01035996)*Age*Math.log(Weight) + (-0.01021754)*Age*Math.log(WC) 
 				+ (0.00460725)*Age*Math.log(HC) + (0.00813113)*Height*Math.log(Weight) 
 				+ (0.00291089)*Height*Math.log(WC) + (-0.00153259)*Height*Math.log(HC) 
-				+ (-0.13276008)*Math.log(Weight)*Math.log(WC) + (-0.00033768)*Math.log(Weight)*Math.log(HC),2);
-			$(result_info).html("按公式2记算:" + ASAT);
-			$(result_span).fadeIn("slow");
-		
+				+ (-0.13276008)*Math.log(Weight)*Math.log(WC) + (-0.00033768)*Math.log(Weight)*Math.log(HC),2);		
 		}
 	}else if(Model==3){
 		// 男
 		if(sex==1){
 			ASAT = Math.pow(15.15256+ (1.86296621)*Math.log(Weight) + (0.15820065)*Math.log(WC)+ (0.32684169)*Math.log(HC) + (382.22253266)*Math.pow(Age,-2)+ (2434.04486207)*Math.pow(Height,-2) + (0.25522104)*Math.pow(Height,-1)+ (1.98618198)*Math.pow(Height,-0.5) + (140.29463314)*Math.pow(Math.log(Weight),-2)+ (-6.22336621)*Math.pow(Math.log(Weight),-1) + (-11.97227349)*Math.pow(Math.log(Weight),-0.5)+ (-0.97312895)*Math.pow(Math.log(WC),-2) + (-10.09275511)*Math.pow(Math.log(WC),-1)+ (-9.79493154)*Math.pow(Math.log(WC),-0.5) + (260.63788989)*Math.pow(Math.log(HC),-2)+ (-28.87060175)*Math.pow(Math.log(HC),-1) + (-33.17382341)*Math.pow(Math.log(HC),-0.5)+ (-0.00000297)*Math.pow(Age,2) + (0.16725872)*Math.pow(Height,0.5)+ (0.00001389)*Math.pow(Height,2) + (5.94370253)*Math.pow(Math.log(Weight),0.5)+ (0.24783536)*Math.pow(Math.log(Weight),2) + (-3.91282773)*Math.pow(Math.log(WC),0.5)+ (0.03832099)*Math.pow(Math.log(WC),2) + (-3.77367960)*Math.pow(Math.log(HC),0.5)+ (0.34426826)*Math.pow(Math.log(HC),2) + (-0.00048580)*Age*Math.log(WC)+ (0.00197285)*Age*Math.log(HC) + (-0.00167404)*Height*Math.log(Weight)+ (-0.00061501)*Height*Math.log(WC) + (-0.00202989)*Height*Math.log(HC)+ (0.02027717)*Math.log(Weight)*Math.log(WC) + (0.03641423)*Math.log(Weight)*Math.log(HC)+ (0.00790617)*Math.log(WC)*Math.log(HC) + (-0.24220646)*Math.log(Whole_body_fat_mass)+ (-0.34744907)*Math.pow(Whole_body_fat_free_mass,0.5)+ (-0.09623795)*Math.pow(Trunk_fat_mass,0.5)+ (0.31543438)*Math.pow(Trunk_fat_free_mass,0.5)+ (0.32227545)*Math.log(Leg_fatfree_mass)+ (-0.00172102)*Age*Math.log(Whole_body_fat_mass)+ (-0.00093521)*Age*Math.pow(Whole_body_fat_free_mass,0.5)+ (-0.00218899)*Age*Math.pow(Trunk_fat_mass,0.5)+ (0.00236864)*Age*Math.pow(Trunk_fat_free_mass,0.5)+ (0.00309759)*Height*Math.log(Whole_body_fat_mass)+ (-0.00064402)*Height*Math.pow(Whole_body_fat_free_mass,0.5)+ (0.00080658)*Height*Math.log(Leg_fatfree_mass)+ (0.06900570)*Math.log(Weight)*Math.log(Whole_body_fat_mass)+ (-0.00004467)*Math.log(Weight)*Math.pow(Whole_body_fat_free_mass,0.5)+ (0.00343545)*Math.log(Weight)*Math.pow(Trunk_fat_mass,0.5)+ (0.05475464)*Math.log(Weight)*Math.log(Leg_fatfree_mass)+ (-0.02934157)*Math.log(WC)*Math.pow(Whole_body_fat_free_mass,0.5)+ (0.08616708)*Math.log(WC)*Math.log(Leg_fatfree_mass)+ (0.00126473)*Math.log(HC)*Math.log(Whole_body_fat_mass)+ (-0.04667013)*Math.log(HC)*Math.pow(Whole_body_fat_free_mass,0.5)+ (0.00137294)*Math.log(HC)*Math.pow(Trunk_fat_mass,0.5)+ (0.01439782)*Math.log(HC)*Math.pow(Trunk_fat_free_mass,0.5)+ (0.08090261)*Math.log(HC)*Math.log(Leg_fatfree_mass)+ (-2.18017930)*Math.log(Basal_metabolic_rate)+ (0.01927075)*Math.log(Weight)*Math.log(Basal_metabolic_rate)+ (0.00823156)*Math.log(WC)*Math.log(Basal_metabolic_rate)+ (0.01495300)*Math.log(HC)*Math.log(Basal_metabolic_rate),2);
-			
-			$(result_info).html("按公式3记算:" + ASAT);
-			$(result_span).fadeIn("slow");
 		// 女
 		}else if(sex==0){				
 			ASAT = Math.pow(-5.125232 
@@ -370,21 +341,14 @@ function compute_asat(sex,Model){
 				+ (-0.00154612)*Age*Math.log(Basal_metabolic_rate) 
 				+ (-0.00003724)*Height*Math.log(Basal_metabolic_rate) 
 				+ (-0.01886643)*Math.log(Weight)*Math.log(Basal_metabolic_rate) 
-				+ (-0.01421563)*Math.log(WC)*Math.log(Basal_metabolic_rate),2);						
-				
-			$(result_info).html("按公式3记算:" + ASAT);
-			$(result_span).fadeIn("slow");
+				+ (-0.01421563)*Math.log(WC)*Math.log(Basal_metabolic_rate),2);
 		}			
 	}	
+	return ASAT.toFixed(3);
 }
 
-
-
-
-
-
 /** ffmv compute **/
-function compute_ffmv(sex,Model){	
+function compute_ffmv(sex,Model,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate){	
 	var FFMV = "";
 	if(Model==1){
 		// 男
@@ -392,20 +356,12 @@ function compute_ffmv(sex,Model){
 			FFMV = 7.491275 
 				+ (-130.88578925)*Math.pow(Math.log(Weight),-2) + (-0.01131362)*Age*Math.log(Weight) 
 				+ (0.01912165)*Height*Math.log(Weight)
-				
-				
-			$(result_info).html("按公式1记算:" + FFMV);
-			$(result_span).fadeIn("slow");
 		// 女
 		}else if(sex==0){
 			FFMV =  -5.07513 
 				+ (0.23805757)*Math.log(Weight) + (2932.22159920)*Math.pow(Age,-2) 
 				+ (-2.39452913)*Math.pow(Math.log(Weight),-2) + (0.00748727)*Math.pow(Math.log(Weight),2) 
 				+ (0.01680202)*Height*Math.log(Weight);
-				
-				
-			$(result_info).html("按公式1记算:" + FFMV);
-			$(result_span).fadeIn("slow");
 		}
 	}else if(Model==2){
 		// 男
@@ -414,11 +370,7 @@ function compute_ffmv(sex,Model){
 				+ (6.51372332)*Math.log(Weight) + (-63.03104037)*Math.pow(Math.log(Weight),-2) 
 				+ (-69.29213215)*Math.pow(Math.log(HC),-2) + (-0.84210863)*Math.pow(Math.log(WC),2) 
 				+ (-0.00011026)*Age*Height + (-0.00343001)*Age*Math.log(Weight) 
-				+ (0.01441484)*Height*Math.log(Weight)
-			
-			
-			$(result_info).html("按公式2记算:" + FFMV);
-			$(result_span).fadeIn("slow");
+				+ (0.01441484)*Height*Math.log(Weight);			
 		// 女
 		}else if(sex==0){
 			FFMV = 91.06333 
@@ -436,12 +388,7 @@ function compute_ffmv(sex,Model){
 				+ (-0.02590472)*Age*Math.log(Weight) + (0.03219355)*Age*Math.log(WC) 
 				+ (0.02619144)*Height*Math.log(Weight) + (-0.00244471)*Height*Math.log(WC) 
 				+ (-0.01044044)*Height*Math.log(HC) + (0.06545691)*Math.log(Weight)*Math.log(WC) 
-				+ (-0.27330009)*Math.log(Weight)*Math.log(HC);
-			
-			
-			$(result_info).html("按公式2记算:" + FFMV);
-			$(result_span).fadeIn("slow");
-		
+				+ (-0.27330009)*Math.log(Weight)*Math.log(HC);		
 		}
 	}else if(Model==3){		
 		// 男
@@ -493,10 +440,6 @@ function compute_ffmv(sex,Model){
 				+ (-0.00561935)*Height*Math.log(Basal_metabolic_rate) 
 				+ (-0.02022501)*Math.log(Weight)*Math.log(Basal_metabolic_rate) 
 				+ (-0.04606516)*Math.log(HC)*Math.log(Basal_metabolic_rate);
-			
-			
-			$(result_info).html("按公式3记算:" + FFMV);
-			$(result_span).fadeIn("slow");
 		// 女
 		}else if(sex==0){	
 			FFMV =  15.85311 
@@ -549,10 +492,36 @@ function compute_ffmv(sex,Model){
 					+ (-0.17257946)*Math.log(Weight)*Math.log(Basal_metabolic_rate) 
 					+ (0.04498930)*Math.log(WC)*Math.log(Basal_metabolic_rate) 
 					+ (-0.01710778)*Math.log(HC)*Math.log(Basal_metabolic_rate);
-			
-			
-			$(result_info).html("按公式3记算:" + FFMV);
-			$(result_span).fadeIn("slow");
 		}
-	}	
+	}		
+	return FFMV.toFixed(3);
+}
+
+function csvToObject(csvString){
+	var csvarry = csvString.split("\r\n");
+	var datas = [];
+	var headers = csvarry[0].split(",");
+	for(var i = 1;i<csvarry.length;i++){
+		var data = {};
+		var temp = csvarry[i].split(",");
+			 for(var j = 0;j<temp.length;j++){
+				 data[headers[j]] = temp[j];
+			 }
+		datas.push(data);
+	}
+	 return datas;
+}
+
+ function FuncCSVInport() {
+	 $("#csvFileInput").val("");
+	 $("#csvFileInput").click();
+ }
+
+ function readCSVFile(obj) {
+	 var reader = new FileReader();
+	 reader.readAsText(obj.files[0]);
+	 reader.onload = function () {
+		   var data = csvToObject(this.result);
+			console.log(data);//data为csv转换后的对象
+	}
 }
