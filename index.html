@@ -12,14 +12,15 @@
 	<style type="text/css">
 		.basic-grey {
 			margin-top:12%;
+			width:800px
 		}
 	</style>
 </head>
 
 <body>
 
-
-<form action="" method="post" class="basic-grey">
+<div class="main-box">
+<form class="basic-grey">
 	<h1>
 		论文标题
 		<span>
@@ -34,33 +35,7 @@
 		<a href="ffmv.html"><input type="button" class="button" value="计算去脂肌肉FFMV" /></a>
 	</label>
 </form>
-
-<script type="text/javascript">
-	function getRisk(){
-	//define return value
-	var returnRisk
-	
-	//get parameters from form
-	var iptAge = document.getElementById("age").value
-	var iptSmoking  = document.getElementById("smk").value
-	var iptTbi  = document.getElementById("tbi").value
-	var iptAbi = document.getElementById("abi").value
-	var iptSbp = document.getElementById("sbp").value
-	
-	//calculate for b
-	var b = 0.329 * iptAge + 0.415 * iptSmoking - 0.871 * Math.log(iptTbi ) + 0.099 * iptSbp -0.0017 * iptAge * iptSbp -3.097 * iptAbi
-	var c = 1- Math.pow(0.975,Math.exp(-12.598+b))
-	returnRisk = c
-	document.getElementById("riskValue").innerHTML=Number(returnRisk *100).toFixed(2)+"%"
-	if (returnRisk <= 0.0314 )
-	{document.getElementById("riskCate").innerHTML="Low Risk"
-}
-	else if (returnRisk > 0.0314)
-	{document.getElementById("riskCate").innerHTML="High Risk"
-}
-	//alert(returnRisk)//结果弹窗显示
-	}
-</script>
+</div>
 
 </body>
 

@@ -12,231 +12,215 @@
 <script src="static/jquery-1.12.4.min.js"></script>
 <script src="static/common.js"></script>
 <link rel="stylesheet" href="static/css.css" media="all">
-<style type="text/css">
-.basic-grey {
-	width:580px;
-	float:left;
-	margin:2%;
-}
-
-.basic-grey-right {
-	width:580px;
-	float:left;
-	margin:2%;
-}
-.basic-grey label,.basic-grey-right label {
-	display:block;
-	margin:0px;
-}
-
-</style>
 </head>
 
 <body>
 
+<div class="main-box">
 
-<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
-	<h1>		
-        男性内脏脂肪ASAT
-		<span style="color:red">
-			Age,height,weight为必选项，其他数据填写越详细结果越精准.
-		</span>
-	</h1>
-	<label>
-		<span style="coler:red">
-			Age:<br/>(0~120)
-		</span>
-		<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120" value="58"/>
-	</label>
-	<label>
-		<span>
-			Height:<br/>(50~250cm)
-		</span>
-		<input id="man_height" type="number" name="man_height" placeholder="Height(50~250cm)" min="50" max="250" value="180"
-		/>
-	</label>
-	<label>
-		<span>
-			Weight:<br/>(20~250kg)
-		</span>
-		<input id="man_weight" type="number" name="man_weight" placeholder="Weight(20~250kg)" min="20" max="250" value="116.3"
-		/>
-	</label>
-	<label>
-		<span>
-			WC:<br/>(15~250cm)
-		</span>
-		<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250" value="111"
-		/>
-	</label>
-	<label>
-		<span>
-			HC:<br/>(15~250cm)
-		</span>
-		<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250" value="114"
-		/>
-	</label>
-	<label>
-		<span>
-			Whole body fat mass:<br/>(0~150kg)
-		</span>
-		<input id="man_Whole_body_fat_mass" type="number" name="man_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
-		 value="35.9"/>
-	</label>
-	<label>
-		<span>
-			Whole body fat free mass:<br/>(0~150kg)
-		</span>
-		<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="80.4"
-		/>
-	</label>
-	<label>
-		<span>
-			Trunk fat mass:<br/>(0~80kg)
-		</span>
-		<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80" value="22.5"
-		/>
-	</label>
-	
-	<label>
-		<span>
-			Trunk fat free mass:<br/>(0~80kg)
-		</span>
-		<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40" value="42.9"
-		/>
-	</label>
-	<label>
-		<span>
-			Leg fatfree mass:<br/>(0~40kg)
-		</span>
-		<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40" value="13.75"
-		/>
-	</label>
-	<label>
-		<span>
-			Basal metabolic rate:<br/>(500~30000kJ)
-		</span>
-		<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000" value="10079"
-		/>
-	</label>
-	<label>
-		<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('man')"/>
-	</label>
-	
-	<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
-		<span>
-			result:
-		</span>
-		<div id="man_result_info"></div>
-	</label>
-	<!--
-	<label>
-		<span>
-			upload cvs:
-		</span>
-		<input id="man_file" type="file" name="man_file"/><input type="button" class="button" id="man_file_button" name="man_file_button" value="batch" />
-		<a>download csv modle</a>
-	</label>
-	-->
-</form>
+	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
+		<h1>		
+			男性内脏脂肪ASAT
+			<span style="color:red">
+				Age,height,weight为必选项，其他数据填写越详细结果越精准.
+			</span>
+		</h1>
+		<label>
+			<span style="coler:red">
+				Age:<br/>(0~120)
+			</span>
+			<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120" value="58"/>
+		</label>
+		<label>
+			<span>
+				Height:<br/>(50~250cm)
+			</span>
+			<input id="man_height" type="number" name="man_height" placeholder="Height(50~250cm)" min="50" max="250" value="180"
+			/>
+		</label>
+		<label>
+			<span>
+				Weight:<br/>(20~250kg)
+			</span>
+			<input id="man_weight" type="number" name="man_weight" placeholder="Weight(20~250kg)" min="20" max="250" value="116.3"
+			/>
+		</label>
+		<label>
+			<span>
+				WC:<br/>(15~250cm)
+			</span>
+			<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250" value="111"
+			/>
+		</label>
+		<label>
+			<span>
+				HC:<br/>(15~250cm)
+			</span>
+			<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250" value="114"
+			/>
+		</label>
+		<label>
+			<span>
+				Whole body fat mass:<br/>(0~150kg)
+			</span>
+			<input id="man_Whole_body_fat_mass" type="number" name="man_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
+			 value="35.9"/>
+		</label>
+		<label>
+			<span>
+				Whole body fat free mass:<br/>(0~150kg)
+			</span>
+			<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="80.4"
+			/>
+		</label>
+		<label>
+			<span>
+				Trunk fat mass:<br/>(0~80kg)
+			</span>
+			<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80" value="22.5"
+			/>
+		</label>
+		
+		<label>
+			<span>
+				Trunk fat free mass:<br/>(0~80kg)
+			</span>
+			<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40" value="42.9"
+			/>
+		</label>
+		<label>
+			<span>
+				Leg fatfree mass:<br/>(0~40kg)
+			</span>
+			<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40" value="13.75"
+			/>
+		</label>
+		<label>
+			<span>
+				Basal metabolic rate:<br/>(500~30000kJ)
+			</span>
+			<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000" value="10079"
+			/>
+		</label>
+		<label>
+			<input type="button" class="button" id="man_button" name="man_button" value="Calculate (please click)" onclick="getRisk('man')"/>
+		</label>
+		
+		<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
+			<span>
+				result:
+			</span>
+			<div id="man_result_info"></div>
+		</label>
+		<!--
+		<label>
+			<span>
+				upload cvs:
+			</span>
+			<input id="man_file" type="file" name="man_file"/><input type="button" class="button" id="man_file_button" name="man_file_button" value="batch" />
+			<a>download csv modle</a>
+		</label>
+		-->
+	</form>
 
 
-<form action="" id="man_form" name="man_form" method="post" class="basic-grey-right">
-	<h1>		
-		女性内脏脂肪ASAT
-		<span style="color:red">
-			Age,height,weight为必选项，其他数据填写越详细结果越精准.
-		</span>
-	</h1>
-	<label>
-		<span style="coler:red">
-			Age:<br/>(0~120)
-		</span>
-		<input id="woman_age" type="number" name="woman_age" placeholder="Age(0~120)" min="0" max="120" value="54"/>
-	</label>
-	<label>
-		<span>
-			Height:<br/>(50~250cm)
-		</span>
-		<input id="woman_height" type="number" name="woman_height" placeholder="Height(50~250cm)" min="50" max="250" value="162"
-		/>
-	</label>
-	<label>
-		<span>
-			Weight:<br/>(20~250kg)
-		</span>
-		<input id="woman_weight" type="number" name="woman_weight" placeholder="Weight(20~250kg)" min="20" max="250" value="56.5"
-		/>
-	</label>
-	<label>
-		<span>
-			WC:<br/>(15~250cm)
-		</span>
-		<input id="woman_wc" type="number" name="woman_wc" placeholder="WC(15~250cm)" min="15" max="250" value="67"
-		/>
-	</label>
-	<label>
-		<span>
-			HC:<br/>(15~250cm)
-		</span>
-		<input id="woman_hc" type="number" name="woman_hc" placeholder="HC(15~250cm)" min="15" max="250" value="98"
-		/>
-	</label>
-	<label>
-		<span>
-			Whole body fat mass:<br/>(0~150kg)
-		</span>
-		<input id="woman_Whole_body_fat_mass" type="number" name="woman_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
-		 value="14.6"/>
-	</label>
-	<label>
-		<span>
-			Whole body fat free mass:<br/>(0~150kg)
-		</span>
-		<input id="woman_Whole_body_fat_free_mass" type="number" name="woman_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="41.9"
-		/>
-	</label>
-	<label>
-		<span>
-			Trunk fat mass:<br/>(0~80kg)
-		</span>
-		<input id="woman_Trunk_fat_mass" type="number" name="woman_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80"
-		 value="6.7"/>
-	</label>
-	
-	<label>
-		<span>
-			Trunk fat free mass:<br/>(0~80kg)
-		</span>
-		<input id="woman_Trunk_fat_free_mass" type="number" name="woman_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40"
-		 value="24.2"/>
-	</label>
-	<label>
-		<span>
-			Leg fatfree mass:<br/>(0~40kg)
-		</span>
-		<input id="woman_Leg_fatfree_mass" type="number" name="woman_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40"
-		 value="6.75"/>
-	</label>
-	<label>
-		<span>
-			Basal metabolic rate:<br/>(500~30000kJ)
-		</span>
-		<input id="woman_Basal_metabolic_rate" type="number" name="woman_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000"
-		 value="5171"/>
-	</label>
-	<label>
-		<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate (please click)" onclick="getRisk('woman')"/>
-	</label>
-	
-	<label style="display:none;margin-top: 20px" class="explain" id="woman_result_span">
-		<span>
-			result:
-		</span>
-		<div id="woman_result_info"></div>
-	</label>
-</form>
+	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
+		<h1>		
+			女性内脏脂肪ASAT
+			<span style="color:red">
+				Age,height,weight为必选项，其他数据填写越详细结果越精准.
+			</span>
+		</h1>
+		<label>
+			<span style="coler:red">
+				Age:<br/>(0~120)
+			</span>
+			<input id="woman_age" type="number" name="woman_age" placeholder="Age(0~120)" min="0" max="120" value="54"/>
+		</label>
+		<label>
+			<span>
+				Height:<br/>(50~250cm)
+			</span>
+			<input id="woman_height" type="number" name="woman_height" placeholder="Height(50~250cm)" min="50" max="250" value="162"
+			/>
+		</label>
+		<label>
+			<span>
+				Weight:<br/>(20~250kg)
+			</span>
+			<input id="woman_weight" type="number" name="woman_weight" placeholder="Weight(20~250kg)" min="20" max="250" value="56.5"
+			/>
+		</label>
+		<label>
+			<span>
+				WC:<br/>(15~250cm)
+			</span>
+			<input id="woman_wc" type="number" name="woman_wc" placeholder="WC(15~250cm)" min="15" max="250" value="67"
+			/>
+		</label>
+		<label>
+			<span>
+				HC:<br/>(15~250cm)
+			</span>
+			<input id="woman_hc" type="number" name="woman_hc" placeholder="HC(15~250cm)" min="15" max="250" value="98"
+			/>
+		</label>
+		<label>
+			<span>
+				Whole body fat mass:<br/>(0~150kg)
+			</span>
+			<input id="woman_Whole_body_fat_mass" type="number" name="woman_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
+			 value="14.6"/>
+		</label>
+		<label>
+			<span>
+				Whole body fat free mass:<br/>(0~150kg)
+			</span>
+			<input id="woman_Whole_body_fat_free_mass" type="number" name="woman_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="41.9"
+			/>
+		</label>
+		<label>
+			<span>
+				Trunk fat mass:<br/>(0~80kg)
+			</span>
+			<input id="woman_Trunk_fat_mass" type="number" name="woman_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80"
+			 value="6.7"/>
+		</label>
+		
+		<label>
+			<span>
+				Trunk fat free mass:<br/>(0~80kg)
+			</span>
+			<input id="woman_Trunk_fat_free_mass" type="number" name="woman_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40"
+			 value="24.2"/>
+		</label>
+		<label>
+			<span>
+				Leg fatfree mass:<br/>(0~40kg)
+			</span>
+			<input id="woman_Leg_fatfree_mass" type="number" name="woman_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40"
+			 value="6.75"/>
+		</label>
+		<label>
+			<span>
+				Basal metabolic rate:<br/>(500~30000kJ)
+			</span>
+			<input id="woman_Basal_metabolic_rate" type="number" name="woman_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000"
+			 value="5171"/>
+		</label>
+		<label>
+			<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate (please click)" onclick="getRisk('woman')"/>
+		</label>
+		
+		<label style="display:none;margin-top: 20px" class="explain" id="woman_result_span">
+			<span>
+				result:
+			</span>
+			<div id="woman_result_info"></div>
+		</label>
+	</form>
 
+</div>
 <script type="text/javascript">
 
 	

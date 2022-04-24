@@ -1,4 +1,10 @@
-.basic-grey,.basic-grey-right {
+
+.main-box{
+	width: 1300px;
+	text-align: center;
+	margin: 0 auto;
+}
+.basic-grey-index {
 	margin-left:auto;
 	margin-right:auto;
 	max-width:970px;
@@ -8,8 +14,39 @@
 	color:#888;
 	text-shadow:1px 1px 1px #FFF;
 	border:1px solid #E4E4E4;
+	display: inline-block;
 }
-.basic-grey h1,.basic-grey-right h1 {
+.basic-grey {
+	margin-left:auto;
+	margin-right:auto;
+	max-width:970px;
+	background:#F7F7F7;
+	padding:25px 15px 25px 10px;
+	font:12px Georgia,"Times New Roman",Times,serif;
+	color:#888;
+	text-shadow:1px 1px 1px #FFF;
+	border:1px solid #E4E4E4;
+	display: inline-block;
+	width:580px;
+	margin:10px;
+}
+
+
+.basic-grey {
+	margin-left:auto;
+	margin-right:auto;
+	max-width:970px;
+	background:#F7F7F7;
+	padding:25px 15px 25px 10px;
+	font:12px Georgia,"Times New Roman",Times,serif;
+	color:#888;
+	text-shadow:1px 1px 1px #FFF;
+	border:1px solid #E4E4E4;
+	display: inline-block;
+	width:580px;
+	margin:10px;
+}
+.basic-grey h1 {
 	font-size:25px;
 	padding:0px 0px 10px 40px;
 	display:block;
@@ -17,18 +54,18 @@
 	margin:-10px -15px 30px -10px;
 	color:#888;
 }
-.basic-grey h1>span,.basic-grey-right h1>span {
+.basic-grey h1>span {
 	display:block;
 	font-size:11px;
 	padding-top:20px;
 	padding-bottom:10px;
 }
-.basic-grey label,.basic-grey-right label {
+.basic-grey label {
 	display:block;
 	margin:10px;
 	text-align:center;
 }
-.basic-grey label>span,.basic-grey-right label>span {
+.basic-grey label>span {
 	float:left;
 	width:25%;
 	text-align:right;
@@ -36,7 +73,7 @@
 	margin-top:10px;
 	color:#888;
 }
-.basic-grey input[type="text"],.basic-grey input[type="number"],.basic-grey-right input[type="text"],.basic-grey-right input[type="number"] {
+.basic-grey input[type="text"],.basic-grey input[type="number"] {
 	border:1px solid #DADADA;
 	color:#888;
 	height:30px;
@@ -52,7 +89,7 @@
 	-moz-box-shadow:inset 0px 1px 4px #ECECEC;
 	-webkit-box-shadow:inset 0px 1px 4px #ECECEC;
 }
-.basic-grey .button,.basic-grey-right .button {
+.basic-grey .button {
 	background:#E27575;
 	border:none;
 	padding:10px 25px 10px 25px;
@@ -63,7 +100,7 @@
 	cursor:pointer;
 	margin-right:20px;
 }
-.basic-grey .button:hover,.basic-grey-right .button:hover  {
+.basic-grey .button:hover  {
 	background:#CF7A7A
 }
 
