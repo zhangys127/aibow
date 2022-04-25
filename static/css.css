@@ -141,7 +141,11 @@
     margin-top: 10px;
 	width:80px;height:80px;
 }
+.download-box img:hover{
 
+transform: scale(1.2);
+
+}
 .download-box div{
 	font:Georgia,"Times New Roman",Times,serif;
 	float: left;
