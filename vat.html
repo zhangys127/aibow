@@ -7,7 +7,7 @@
 <head>
 <meta content="zh-cn" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>腹部脂肪VAT计算</title>
+<title>isceral adipose tissue (VAT) estimate</title>
 
 <script src="static/jquery-1.12.4.min.js"></script>
 <script src="static/common.js"></script>
@@ -115,13 +115,12 @@
 		<div id="man_result_info"></div>
 	</div>	
 	<div class="download-box">			
-		<div>	
-				批量计算请下载CSV模板，按要求填写数据<br/>
-				<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)" title="Uploading a CVS file">Batch Calculate</button>
-				<input type="file" accept=".csv" id="csvFileInput_1" onchange="readCSVFile(this,'VAT',1)" style="display:none;"/>
-		
+		<div class="download-input">	
+			Batch calculation Download the CSV template and fill in the data as required &nbsp;&nbsp;
+			<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)" title="Uploading a CVS file">Batch Calculate</button>
+			<input type="file" accept=".csv" id="csvFileInput_1" onchange="readCSVFile(this,'VAT',1)" style="display:none;"/>
 		</div>		
-		<div style="margin-left: 40px;">
+		<div>
 			<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
 		</div>
 	</div>
@@ -224,12 +223,12 @@
 	</div>	
 	
 	<div class="download-box">			
-		<div>	
-				批量计算请下载CSV模板，按要求填写数据<br/>
-				<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)" title="Uploading a CVS file">Batch Calculate</button>
-				<input type="file" id="csvFileInput_0" accept=".csv" onchange="readCSVFile(this,'VAT',0)" style="display:none;"/>		
+		<div class="download-input">	
+			Batch calculation Download the CSV template and fill in the data as required &nbsp;&nbsp;
+			<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)" title="Uploading a CVS file">Batch Calculate</button>
+			<input type="file" id="csvFileInput_0" accept=".csv" onchange="readCSVFile(this,'VAT',0)" style="display:none;"/>		
 		</div>		
-		<div style="margin-left: 40px;">
+		<div>
 			<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
 		</div>
 	</div>

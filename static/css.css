@@ -129,7 +129,7 @@
     border-top: 1px solid #a1c7e6;
     height: 60px;
     line-height: 42px;
-    padding:10px 0 0 80px;
+    padding:10px 0 0 30px;
     font-size: 16px;
     text-align: center;
 	margin-top: 20px;    
@@ -141,9 +141,15 @@
     margin-top: 10px;
 	width:80px;height:80px;
 }
+
 .download-box div{
+	font:Georgia,"Times New Roman",Times,serif;
 	float: left;
     text-align: left;
     padding-right: 10px;
     margin-top: 10px;
+}
+
+.download-input{
+	width: 80%;
 }
