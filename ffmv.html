@@ -104,26 +104,26 @@
 		/>
 	</label>
 	<label>
-		<input type="button" class="button" id="man_button" name="man_button" value="Calculate" onclick="getRisk('man')"/>
-		<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)">CSV Import</button>
-		<input type="file" id="csvFileInput_1" onchange="readCSVFile(this,'FFMV',1)" style="position: absolute;right: 0px;opacity: 0;"/>
+		<input type="button" class="button" id="man_button" name="man_button" value="Calculate(please click)" onclick="getRisk('man')"/>
 	</label>
 	
-	<label style="display:none;margin-top: 20px" class="explain" id="man_result_span">
+	<div style="display:none;margin-top: 20px" class="explain" id="man_result_span">
 		<span>
 			result:
 		</span>
 		<div id="man_result_info"></div>
-	</label>
-	<!--
-	<label>
-		<span>
-			upload cvs:
-		</span>
-		<input id="man_file" type="file" name="man_file"/><input type="button" class="button" id="man_file_button" name="man_file_button" value="batch" />
-		<a>download csv modle</a>
-	</label>
-	-->
+	</div>
+	<div class="download-box">			
+		<div>	
+				批量计算请下载CSV模板，按要求填写数据<br/>
+				<button type="button" class="button" name="seach" onclick="FuncCSVInport(1)" title="Uploading a CVS file">Batch Calculate</button>
+				<input type="file" accept=".csv" id="csvFileInput_1" onchange="readCSVFile(this,'FFMV',1)" style="display:none;"/>
+		
+		</div>		
+		<div style="margin-left: 40px;">
+			<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
+		</div>
+	</div>
 </form>
 
 
@@ -212,17 +212,25 @@
 		 value="5171"/>
 	</label>
 	<label>
-		<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate" onclick="getRisk('woman')"/>
-		<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)">CSV Import</button>
-		<input type="file" id="csvFileInput_0" onchange="readCSVFile(this,'FFMV',0)" style="position: absolute;right: 0px;opacity: 0;"/>
+		<input type="button" class="button" id="wowoman_button" name="woman_button" value="Calculate(please click)" onclick="getRisk('woman')"/>
 	</label>
 	
-	<label style="display:none;margin-top: 20px" class="explain" id="woman_result_span">
+	<div style="display:none;margin-top: 20px" class="explain" id="woman_result_span">
 		<span>
 			result:
 		</span>
 		<div id="woman_result_info"></div>
-	</label>
+	</div>
+	<div class="download-box">			
+		<div>	
+				批量计算请下载CSV模板，按要求填写数据<br/>
+				<button type="button" class="button" name="seach" onclick="FuncCSVInport(0)" title="Uploading a CVS file">Batch Calculate</button>
+				<input type="file" id="csvFileInput_0" accept=".csv" onchange="readCSVFile(this,'FFMV',0)" style="display:none;"/>		
+		</div>		
+		<div style="margin-left: 40px;">
+			<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
+		</div>
+	</div>
 </form>
 </div>
 <script type="text/javascript">
