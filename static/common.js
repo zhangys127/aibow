@@ -644,7 +644,7 @@ function batchCheck1(data) {
 	if(data.age==null ||  data.weight=="" || data.weight<20 || data.weight>250){
 		msg = msg + data.eid + " has a Weight error" + "\n";
 	}
-	return msg;
+	return "";
 }
 
 function batchCheck2(data) {	
@@ -655,7 +655,7 @@ function batchCheck2(data) {
 	if (data.HC<15 || data.HC>250 ) {
 		msg = msg + data.eid + " has a HC error" + "\n";
 	}
-	return msg;
+	return "";
 }
 
 function batchCheck3(data) {	
@@ -678,7 +678,7 @@ function batchCheck3(data) {
 	if (data.Basal_metabolic_rate<500 || data.Basal_metabolic_rate>30000 ) {
 		msg = msg + data.eid + " has a Trunk_fat_mass error" + "\n";
 	}
-	return msg;
+	return "";
 }
 
 
