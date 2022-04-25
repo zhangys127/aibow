@@ -92,25 +92,25 @@
 	-webkit-box-shadow:inset 0px 1px 4px #ECECEC;
 }
 .basic-grey .button {
-	background:#E27575;
+	background:#513fe6;
 	border:none;
 	padding:10px 25px 10px 25px;
 	color:#FFF;
 	box-shadow:1px 1px 5px #B6B6B6;
 	border-radius:3px;
-	text-shadow:1px 1px 1px #9E3F3F;
+	text-shadow:1px 1px 1px #513fe6;
 	cursor:pointer;
 	margin-right:20px;
 }
 .basic-grey .button:hover  {
-	background:#CF7A7A
+	background:#2e1cc1
 }
 
 .explain {
     border: 1px solid #a1c7e6;
     height: 60px;
     line-height: 42px;
-    background: #e0f1ff;
+    background: #f2f9f3;
     color: #1e4e7b;
     padding: 0 10px;
     font-size: 16px;
@@ -128,7 +128,7 @@
     border-top: 1px solid #a1c7e6;
     height: 60px;
     line-height: 42px;
-    padding:10px 0 0 60px;
+    padding:10px 0 0 80px;
     font-size: 16px;
     text-align: center;
 	margin-top: 20px;
@@ -136,8 +136,8 @@
 
 .download-box img{
 	float: right;
-    margin-top: -10px;
-	width:100px;height:100px;
+    margin-top: 10px;
+	width:80px;height:80px;
 }
 .download-box div{
 	float: left;
