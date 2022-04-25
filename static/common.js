@@ -523,7 +523,12 @@ function csvToObject(csvString){
  function readCSVFile(obj,type,gender) {
 	 var reader = new FileReader();
 	 reader.readAsText(obj.files[0]);
-
+	 var fname=obj.files[0].name;
+	 var ext = fname.substr(fname.lastIndexOf(".")+1);
+	 if(ext!="csv" && ext!="CSV" ){
+		 alert("Please upload the CVS file");
+		 return;
+	 }
 	 reader.onload = function () {
 		   var datas = csvToObject(this.result);
 			//console.log(data);
