@@ -544,8 +544,8 @@ function csvToObject(csvString){
 			}else if(type == "ASAT"){
 				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
 			}else{
-				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
-			}
+				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","FFMV_LASSO_mod1","FFMV_LASSO_mod2","FFMV_LASSO_mod3"];				
+			}		
 			rows.push(header);
 			var msg="";
 			for(var i = 0;i<datas.length;i++){
