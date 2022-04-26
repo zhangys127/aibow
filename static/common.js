@@ -636,13 +636,16 @@ function batchCheck1(data) {
 	//console.log(data);
 	var msg="";
 	if(data.age==null ||  data.age=="" ||  data.age<0 || data.age>120 ){
-		msg = msg + 'The "age" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"age"<br/>';
 	}
 	if(data.height==null ||  data.height=="" || data.height<50 || data.height>250){
-		msg = msg + 'The "height" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"height"<br/>';
 	}
 	if(data.weight==null ||  data.weight=="" || data.weight<20 || data.weight>250){
-		msg = msg + 'The "weight" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"weight"<br/>';
+	}
+	if(msg!=""){
+		msg ='The following fields are incorrect for <b>eid = ' + data.eid  +  '</b>:<br/><b>' + msg + '</b>';	
 	}
 	return msg;
 }
@@ -650,35 +653,41 @@ function batchCheck1(data) {
 function batchCheck2(data) {	
 	var msg="";
 	if (data.WC<15 || data.WC>250 ) {
-		msg = msg + 'The "WC" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"WC"<br/>';
 	}
 	if (data.HC<15 || data.HC>250 ) {
-		msg = msg + 'The "HC" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"HC"<br/>';
 	}
-	return "";
+	if(msg!=""){
+		msg ='The following fields are incorrect for <b>eid = ' + data.eid  +  '</b>:<br/><b>' + msg + '</b>';	
+	}
+	return msg;
 }
 
-function batchCheck3(data) {	
+function batchCheck3(data) {
 	var msg="";
 	if (data.Whole_body_fat_mass<0 || data.Whole_body_fat_mass>150 ) {
-		msg = msg + 'The "Whole_body_fat_mass" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Whole_body_fat_mass"<br/>';
 	}
 	if (data.Whole_body_fat_free_mass<0 || data.Whole_body_fat_free_mass>150 ) {
-		msg = msg + 'The "Whole_body_fat_free_mass" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Whole_body_fat_free_mass"<br/>';
 	}
 	if (data.Trunk_fat_mass<0 || data.Trunk_fat_mass>80 ) {
-		msg = msg + 'The "Trunk_fat_mass" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Trunk_fat_mass"<br/>';
 	}
 	if (data.Trunk_fat_free_mass<0 || data.Trunk_fat_free_mass>80 ) {
-		msg = msg + 'The "Trunk_fat_free_mass" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Trunk_fat_free_mass"<br/>';
 	}
 	if (data.Leg_fatfree_mass<0 || data.Leg_fatfree_mass>40 ) {
-		msg = msg + 'The "Leg_fatfree_mass" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Leg_fatfree_mass"<br/>';
 	}
 	if (data.Basal_metabolic_rate<500 || data.Basal_metabolic_rate>30000 ) {
-		msg = msg + 'The "Basal_metabolic_rate" field of eid =' + data.eid  + ' is incorrect' + "\n";
+		msg = msg + '"Basal_metabolic_rate"<br/>';
 	}
-	return "";
+	if(msg!=""){
+		msg ='The following fields are incorrect for <b>eid = ' + data.eid  +  '</b>:<br/><b>' + msg + '</b>';	
+	}
+	return msg;
 }
 
 
@@ -698,7 +707,7 @@ function downloadCvs(rows,file_name){
 }
 
 function blockUI(msg){
-	$('.prompt_text').text(msg);
+	$('.prompt_text').html(msg);
     $('.mask').removeClass('hide');
 }
 
