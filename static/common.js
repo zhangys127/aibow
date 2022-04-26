@@ -540,11 +540,11 @@ function csvToObject(csvString){
 			const rows = [];
 			let header =[];
 			if(type == "VAT"){
-				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3"];
+				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3"];
 			}else if(type == "ASAT"){
-				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
+				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
 			}else{
-				header=["eid", "age", "sex", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","FFMV_LASSO_mod1","FFMV_LASSO_mod2","FFMV_LASSO_mod3"];				
+				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","FFMV_LASSO_mod1","FFMV_LASSO_mod2","FFMV_LASSO_mod3"];				
 			}		
 			rows.push(header);
 			var msg="";
@@ -578,7 +578,7 @@ function csvToObject(csvString){
 							VAT_LASSO_mod3 = compute_vat(gender,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
 						}
 					}	
-					row = [data.eid,data.age,gender,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,VAT_LASSO_mod1,VAT_LASSO_mod2,VAT_LASSO_mod3];
+					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,VAT_LASSO_mod1,VAT_LASSO_mod2,VAT_LASSO_mod3];
 				}else if(type == "ASAT"){
 					var SAT_LASSO_mod1 = compute_asat(gender,1,data.age,data.height,data.weight);					
 					var SAT_LASSO_mod2="";
@@ -600,7 +600,7 @@ function csvToObject(csvString){
 							SAT_LASSO_mod3 = compute_asat(gender,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);	
 						}
 					}	
-					row = [data.eid,data.age,gender,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,SAT_LASSO_mod1,SAT_LASSO_mod2,SAT_LASSO_mod3];			
+					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,SAT_LASSO_mod1,SAT_LASSO_mod2,SAT_LASSO_mod3];			
 				}else{
 					var FFMV_LASSO_mod1 = compute_ffmv(gender,1,data.age,data.height,data.weight);					
 					var FFMV_LASSO_mod2="";
@@ -623,7 +623,7 @@ function csvToObject(csvString){
 						}
 					}						
 					
-					row = [data.eid,data.age,gender,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,FFMV_LASSO_mod1,FFMV_LASSO_mod2,FFMV_LASSO_mod3];
+					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,FFMV_LASSO_mod1,FFMV_LASSO_mod2,FFMV_LASSO_mod3];
 				}				
 				rows.push(row);
 			}			
