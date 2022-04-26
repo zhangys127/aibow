@@ -119,7 +119,7 @@
 				<input type="file" accept=".csv" id="csvFileInput_1" onchange="readCSVFile(this,'ASAT',1)" style="display:none;"/>
 			</div>		
 			<div>
-				<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
+				<img src="static/download.png" title="Download the CSV template" onclick="downloadCvsTemplate();"/>
 			</div>
 		</div>
 	</form>
@@ -226,7 +226,7 @@
 				<input type="file" id="csvFileInput_0" accept=".csv" onchange="readCSVFile(this,'ASAT',0)" style="display:none;"/>		
 			</div>		
 			<div>
-				<a href="model.csv" title="Download the CSV template"><img src="static/download.png"/></a>
+				<img src="static/download.png" title="Download the CSV template" onclick="downloadCvsTemplate();"/>
 			</div>
 		</div>
 	</form>

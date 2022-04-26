@@ -142,9 +142,8 @@
 	width:80px;height:80px;
 }
 .download-box img:hover{
-
-transform: scale(1.2);
-
+	cursor:pointer;
+	transform: scale(1.2);
 }
 .download-box div{
 	font:Georgia,"Times New Roman",Times,serif;

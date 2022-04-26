@@ -628,7 +628,7 @@ function csvToObject(csvString){
 				rows.push(row);
 			}			
 			var file_name = (type + "-") + (gender==1?"Male":"Female") + "-Results";
-			downloadCvs(rows,file_name)
+			downloadCvs(rows,file_name);
 	}
 }
 
@@ -706,6 +706,14 @@ function downloadCvs(rows,file_name){
 	
 }
 
+function downloadCvsTemplate(){
+	const rows=[];
+	let row = [];
+	header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass"];	
+	rows.push(header);
+	var file_name = "CsvTemplate";
+	downloadCvs(rows,file_name);
+}
 function blockUI(msg){
 	$('.prompt_text').html(msg);
     $('.mask').removeClass('hide');
