@@ -540,11 +540,11 @@ function csvToObject(csvString){
 			const rows = [];
 			let header =[];
 			if(type == "VAT"){
-				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3"];
+				header=["eid", "age", "height", "weight", "Waist_circumference", "Hip_circumference", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","VAT_LASSO_mod1","VAT_LASSO_mod2","VAT_LASSO_mod3"];
 			}else if(type == "ASAT"){
-				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
+				header=["eid", "age", "height", "weight", "Waist_circumference", "Hip_circumference", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","SAT_LASSO_mod1","SAT_LASSO_mod2","SAT_LASSO_mod3"];				
 			}else{
-				header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","FFMV_LASSO_mod1","FFMV_LASSO_mod2","FFMV_LASSO_mod3"];				
+				header=["eid", "age", "height", "weight", "Waist_circumference", "Hip_circumference", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass","FFMV_LASSO_mod1","FFMV_LASSO_mod2","FFMV_LASSO_mod3"];				
 			}		
 			rows.push(header);
 			var msg="";
@@ -561,13 +561,13 @@ function csvToObject(csvString){
 					var VAT_LASSO_mod2="";
 					var VAT_LASSO_mod3="";
 					
-					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+					if(data.Waist_circumference!=null && data.Waist_circumference!="" && data.Hip_circumference!=null && data.Hip_circumference!=""){
 						msg = batchCheck2(data);
 						if(msg != ""){
 							blockUI(msg)
 							return;
 						}
-						VAT_LASSO_mod2 = compute_vat(gender,2,data.age,data.height,data.weight,data.WC,data.HC);
+						VAT_LASSO_mod2 = compute_vat(gender,2,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference);
 						
 						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
 							msg = batchCheck3(data);
@@ -575,21 +575,21 @@ function csvToObject(csvString){
 								blockUI(msg)
 								return;
 							}	
-							VAT_LASSO_mod3 = compute_vat(gender,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
+							VAT_LASSO_mod3 = compute_vat(gender,3,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
 						}
 					}	
-					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,VAT_LASSO_mod1,VAT_LASSO_mod2,VAT_LASSO_mod3];
+					row = [data.eid,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,VAT_LASSO_mod1,VAT_LASSO_mod2,VAT_LASSO_mod3];
 				}else if(type == "ASAT"){
 					var SAT_LASSO_mod1 = compute_asat(gender,1,data.age,data.height,data.weight);					
 					var SAT_LASSO_mod2="";
 					var SAT_LASSO_mod3="";
-					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+					if(data.Waist_circumference!=null && data.Waist_circumference!="" && data.Hip_circumference!=null && data.Hip_circumference!=""){
 						msg = batchCheck2(data);
 						if(msg != ""){
 							blockUI(msg)
 							return;
 						}
-						SAT_LASSO_mod2 = compute_asat(gender,2,data.age,data.height,data.weight,data.WC,data.HC);
+						SAT_LASSO_mod2 = compute_asat(gender,2,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference);
 						
 						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
 							msg = batchCheck3(data);
@@ -597,21 +597,21 @@ function csvToObject(csvString){
 								blockUI(msg)
 								return;
 							}	
-							SAT_LASSO_mod3 = compute_asat(gender,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);	
+							SAT_LASSO_mod3 = compute_asat(gender,3,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);	
 						}
 					}	
-					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,SAT_LASSO_mod1,SAT_LASSO_mod2,SAT_LASSO_mod3];			
+					row = [data.eid,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,SAT_LASSO_mod1,SAT_LASSO_mod2,SAT_LASSO_mod3];			
 				}else{
 					var FFMV_LASSO_mod1 = compute_ffmv(gender,1,data.age,data.height,data.weight);					
 					var FFMV_LASSO_mod2="";
 					var FFMV_LASSO_mod3="";
-					if(data.WC!=null && data.WC!="" && data.HC!=null && data.HC!=""){
+					if(data.Waist_circumference!=null && data.Waist_circumference!="" && data.Hip_circumference!=null && data.Hip_circumference!=""){
 						msg = batchCheck2(data);
 						if(msg != ""){
 							blockUI(msg)
 							return;
 						}
-						FFMV_LASSO_mod2 = compute_ffmv(gender,2,data.age,data.height,data.weight,data.WC,data.HC);
+						FFMV_LASSO_mod2 = compute_ffmv(gender,2,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference);
 						
 						if(data.Whole_body_fat_mass!=null && data.Whole_body_fat_mass!="" && data.Whole_body_fat_free_mass!=null && data.Whole_body_fat_free_mass!="" && data.Trunk_fat_mass!=null && data.Trunk_fat_mass!="" && data.Trunk_fat_free_mass!=null && data.Trunk_fat_free_mass!="" && data.Leg_fatfree_mass!=null && data.Leg_fatfree_mass!="" && data.Basal_metabolic_rate!=null && data.Basal_metabolic_rate!=""){
 							msg = batchCheck3(data);
@@ -619,11 +619,11 @@ function csvToObject(csvString){
 								blockUI(msg)
 								return;
 							}	
-							FFMV_LASSO_mod3 = compute_ffmv(gender,3,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
+							FFMV_LASSO_mod3 = compute_ffmv(gender,3,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Leg_fatfree_mass,data.Basal_metabolic_rate);
 						}
 					}						
 					
-					row = [data.eid,data.age,data.height,data.weight,data.WC,data.HC,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,FFMV_LASSO_mod1,FFMV_LASSO_mod2,FFMV_LASSO_mod3];
+					row = [data.eid,data.age,data.height,data.weight,data.Waist_circumference,data.Hip_circumference,data.Whole_body_fat_mass,data.Whole_body_fat_free_mass,data.Trunk_fat_mass,data.Trunk_fat_free_mass,data.Basal_metabolic_rate,data.Leg_fatfree_mass,FFMV_LASSO_mod1,FFMV_LASSO_mod2,FFMV_LASSO_mod3];
 				}				
 				rows.push(row);
 			}			
@@ -652,11 +652,11 @@ function batchCheck1(data) {
 
 function batchCheck2(data) {	
 	var msg="";
-	if (data.WC<15 || data.WC>250 ) {
-		msg = msg + '"WC"<br/>';
+	if (data.Waist_circumference<15 || data.Waist_circumference>250 ) {
+		msg = msg + '"Waist_circumference"<br/>';
 	}
-	if (data.HC<15 || data.HC>250 ) {
-		msg = msg + '"HC"<br/>';
+	if (data.Hip_circumference<15 || data.Hip_circumference>250 ) {
+		msg = msg + '"Hip_circumference"<br/>';
 	}
 	if(msg!=""){
 		msg ='The following fields are incorrect for <b>eid = ' + data.eid  +  '</b>:<br/><b>' + msg + '</b>';	
@@ -709,7 +709,7 @@ function downloadCvs(rows,file_name){
 function downloadCvsTemplate(){
 	const rows=[];
 	let row = [];
-	header=["eid", "age", "height", "weight", "WC", "HC", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass"];	
+	header=["eid", "age", "height", "weight", "Waist_circumference", "Hip_circumference", "Whole_body_fat_mass", "Whole_body_fat_free_mass", "Trunk_fat_mass", "Trunk_fat_free_mass", "Basal_metabolic_rate", "Leg_fatfree_mass"];	
 	rows.push(header);
 	var file_name = "CsvTemplate";
 	downloadCvs(rows,file_name);

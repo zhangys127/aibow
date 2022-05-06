@@ -20,16 +20,16 @@
 
 	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
 		<h1>		
-			ASAT estimate for male
+			ASAT volume estimation for male
 			<span style="color:red">
 				Age,height,weight are required. Others are optional. But more data filled in provides more accurate estimates.
 			</span>
 		</h1>
 		<label>
 			<span style="coler:red">
-				Age:<br/>(0~120)
+				Age:<br/>(0~120years)
 			</span>
-			<input id="man_age" type="number" name="man_age" placeholder="Age(0~120)" min="0" max="120" value="58"/>
+			<input id="man_age" type="number" name="man_age" placeholder="Age(0~120years)" min="0" max="120" value="58"/>
 		</label>
 		<label>
 			<span>
@@ -47,35 +47,35 @@
 		</label>
 		<label>
 			<span>
-				WC:<br/>(15~250cm)
+				Waist circumference:<br/>(15~250cm)
 			</span>
 			<input id="man_wc" type="number" name="man_wc" placeholder="WC(15~250cm)" min="15" max="250" value="111"
 			/>
 		</label>
 		<label>
 			<span>
-				HC:<br/>(15~250cm)
+				Hip circumference:<br/>(15~250cm)
 			</span>
 			<input id="man_hc" type="number" name="man_hc" placeholder="HC(15~250cm)" min="15" max="250" value="114"
 			/>
 		</label>
 		<label>
 			<span>
-				Whole body fat mass:<br/>(0~150kg)
+				Whole body fat mass * :<br/>(0~150kg)
 			</span>
 			<input id="man_Whole_body_fat_mass" type="number" name="man_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
 			 value="35.9"/>
 		</label>
 		<label>
 			<span>
-				Whole body fat free mass:<br/>(0~150kg)
+				Whole body fat free mass * :<br/>(0~150kg)
 			</span>
 			<input id="man_Whole_body_fat_free_mass" type="number" name="man_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="80.4"
 			/>
 		</label>
 		<label>
 			<span>
-				Trunk fat mass:<br/>(0~80kg)
+				Trunk fat mass * :<br/>(0~80kg)
 			</span>
 			<input id="man_Trunk_fat_mass" type="number" name="man_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80" value="22.5"
 			/>
@@ -83,24 +83,27 @@
 		
 		<label>
 			<span>
-				Trunk fat free mass:<br/>(0~80kg)
+				Trunk fat free mass * :<br/>(0~80kg)
 			</span>
 			<input id="man_Trunk_fat_free_mass" type="number" name="man_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40" value="42.9"
 			/>
 		</label>
 		<label>
 			<span>
-				Leg fatfree mass:<br/>(0~40kg)
+				Leg fatfree mass * :<br/>(0~40kg)
 			</span>
 			<input id="man_Leg_fatfree_mass" type="number" name="man_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40" value="13.75"
 			/>
 		</label>
 		<label>
 			<span>
-				Basal metabolic rate:<br/>(500~30000kJ)
+				Basal metabolic rate * :<br/>(500~30000kJ)
 			</span>
 			<input id="man_Basal_metabolic_rate" type="number" name="man_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000" value="10079"
 			/>
+		</label>
+		<label style = "margin-left:-245px;margin-bottom:23px;">
+			* Bioelectrical impedance analysis (BIA) parameters
 		</label>
 		<label>
 			<input type="button" class="button" id="man_button" title="Please click the button to calculate" name="man_button" value="Calculate(please click)" onclick="getRisk('man')"/>	
@@ -127,16 +130,16 @@
 
 	<form action="" id="man_form" name="man_form" method="post" class="basic-grey">
 		<h1>		
-			ASAT estimate for female
+			ASAT volume estimation for female
 			<span style="color:red">
 				Age,height,weight are required. Others are optional. But more data filled in provides more accurate estimates.
 			</span>
 		</h1>
 		<label>
 			<span style="coler:red">
-				Age:<br/>(0~120)
+				Age:<br/>(0~120years)
 			</span>
-			<input id="woman_age" type="number" name="woman_age" placeholder="Age(0~120)" min="0" max="120" value="54"/>
+			<input id="woman_age" type="number" name="woman_age" placeholder="Age(0~120years)" min="0" max="120" value="54"/>
 		</label>
 		<label>
 			<span>
@@ -154,35 +157,35 @@
 		</label>
 		<label>
 			<span>
-				WC:<br/>(15~250cm)
+				Waist circumference:<br/>(15~250cm)
 			</span>
 			<input id="woman_wc" type="number" name="woman_wc" placeholder="WC(15~250cm)" min="15" max="250" value="67"
 			/>
 		</label>
 		<label>
 			<span>
-				HC:<br/>(15~250cm)
+				Hip circumference:<br/>(15~250cm)
 			</span>
 			<input id="woman_hc" type="number" name="woman_hc" placeholder="HC(15~250cm)" min="15" max="250" value="98"
 			/>
 		</label>
 		<label>
 			<span>
-				Whole body fat mass:<br/>(0~150kg)
+				Whole body fat mass * :<br/>(0~150kg)
 			</span>
 			<input id="woman_Whole_body_fat_mass" type="number" name="woman_Whole_body_fat_mass" placeholder="Whole body fat mass(0~150kg)" min="0" max="150"
 			 value="14.6"/>
 		</label>
 		<label>
 			<span>
-				Whole body fat free mass:<br/>(0~150kg)
+				Whole body fat free mass * :<br/>(0~150kg)
 			</span>
 			<input id="woman_Whole_body_fat_free_mass" type="number" name="woman_Whole_body_fat_free_mass" placeholder="Whole body fat free mass(0~150kg)" min="0" max="150" value="41.9"
 			/>
 		</label>
 		<label>
 			<span>
-				Trunk fat mass:<br/>(0~80kg)
+				Trunk fat mass * :<br/>(0~80kg)
 			</span>
 			<input id="woman_Trunk_fat_mass" type="number" name="woman_Trunk_fat_mass" placeholder="Trunk fat mass(0~80kg)" min="0" max="80"
 			 value="6.7"/>
@@ -190,24 +193,27 @@
 		
 		<label>
 			<span>
-				Trunk fat free mass:<br/>(0~80kg)
+				Trunk fat free mass * :<br/>(0~80kg)
 			</span>
 			<input id="woman_Trunk_fat_free_mass" type="number" name="woman_Trunk_fat_free_mass" placeholder="Trunk fat free mass(0~80kg)" min="0" max="40"
 			 value="24.2"/>
 		</label>
 		<label>
 			<span>
-				Leg fatfree mass:<br/>(0~40kg)
+				Leg fatfree mass * :<br/>(0~40kg)
 			</span>
 			<input id="woman_Leg_fatfree_mass" type="number" name="woman_Leg_fatfree_mass" placeholder="Leg fatfree mass(0~40kg)" min="0" max="40"
 			 value="6.75"/>
 		</label>
 		<label>
 			<span>
-				Basal metabolic rate:<br/>(500~30000kJ)
+				Basal metabolic rate * :<br/>(500~30000kJ)
 			</span>
 			<input id="woman_Basal_metabolic_rate" type="number" name="woman_Basal_metabolic_rate" placeholder="Basal metabolic rate(500~30000kJ)" min="500" max="30000"
 			 value="5171"/>
+		</label>
+		<label style = "margin-left:-245px;margin-bottom:23px;">
+			* Bioelectrical impedance analysis (BIA) parameters
 		</label>
 		<label>
 			<input type="button" class="button" id="wowoman_button" title="Please click the button to calculate" name="woman_button" value="Calculate(please click)" onclick="getRisk('woman')"/>
@@ -296,7 +302,7 @@
 		}else {	
 			result =compute_asat(sex,1,Age,Height,Weight,WC,HC,Whole_body_fat_mass,Whole_body_fat_free_mass,Trunk_fat_mass,Trunk_fat_free_mass,Leg_fatfree_mass,Basal_metabolic_rate);
 		}
-		$("#" + gender + "_result_info").html(result);
+		$("#" + gender + "_result_info").html(result + "L");
 		$("#" + gender + "_result_span").fadeIn("slow");
 		init();
 	}
