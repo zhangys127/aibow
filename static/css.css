@@ -25,9 +25,10 @@
 	padding:0px 0px 10px 40px;
 	display:block;
 	border-bottom:1px solid #E4E4E4;
-	margin:-10px -15px 30px -10px;
+	margin:-10px -15px 11px -10px;
 	color:#888;
 	text-align: left;
+	
 }
 .basic-grey h1>span {
 	display:block;
@@ -35,6 +36,7 @@
 	padding:20px 20px 0 0;
 	padding-bottom:10px;
 	text-align: left;
+	line-height:20px;
 }
 .basic-grey label {
 	display:block;
